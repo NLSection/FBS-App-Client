@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FBS — Financieel Beheer Systeem
 
-## Getting Started
+FBS is een Nederlandstalige desktop-applicatie voor het beheren van je
+persoonlijke financiën: bankafschriften inlezen, transacties categoriseren,
+vaste lasten bewaken en zien waar je geld heen gaat.
 
-First, run the development server:
+## Wat het doet
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Importeren** — bankafschriften van meerdere banken inlezen, met herkenning
+  van transacties die je al eerder hebt geïmporteerd
+- **Categoriseren** — regels die nieuwe transacties automatisch indelen, met
+  handmatige correctie waar dat beter uitkomt
+- **Vaste posten** — terugkerende lasten volgen en afwijkingen zien
+- **Budgetten en potjes** — geld oormerken voor doelen en bijhouden wat er nog
+  vrij te besteden is
+- **Trends** — uitgaven over langere periodes naast elkaar zetten
+- **Maandafsluiting** — een periode vastzetten zodat cijfers achteraf niet meer
+  verschuiven
+- **Back-ups** — versleutelde back-ups van je gegevens
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Platforms
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Windows en macOS. De macOS-versie is universeel: hij draait zowel op Intel-Macs
+als op Apple Silicon.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Twee manieren om het te draaien
 
-## Learn More
+- **Alleen op je eigen computer** — al je gegevens blijven in een lokaal
+  databasebestand op die machine.
+- **Met een eigen server** — een FBS-Server container, bijvoorbeeld op een NAS,
+  zodat meerdere apparaten met dezelfde gegevens werken.
 
-To learn more about Next.js, take a look at the following resources:
+In beide gevallen blijven je financiële gegevens bij jou; er gaat niets naar
+een dienst van iemand anders.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Downloads
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Zie [Releases](../../releases) voor de nieuwste versie. De app werkt zichzelf
+bij via een ingebouwde updater, dus handmatig downloaden is normaal gesproken
+alleen nodig bij de eerste installatie.
 
-## Deploy on Vercel
+## Over deze repository
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Hier staan uitsluitend de releases en de bijbehorende bestanden voor de
+updater. De broncode is niet openbaar.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+Section Labs
