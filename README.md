@@ -128,8 +128,6 @@ wegschrijven naar een map die je zelf kiest. Terugzetten kan vanuit de app.
 Hier staan de uitgebrachte versies en de bestanden waarmee de app zichzelf
 bijwerkt. De broncode is niet openbaar.
 
-Testversies staan in [FBS-App-Test](../../../FBS-App-Test).
-
 ---
 
 Section Labs
