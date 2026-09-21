@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FBS, Financieel Beheer Systeem</title>
+<meta name="description" content="FBS, het Financieel Beheer Systeem, is een Nederlandstalig programma voor je eigen financiën. Je leest de bestanden van je bank in en FBS maakt er een overzicht van. Alles blijft op je eigen computer.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='40' y2='40' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%235c7cfa'/%3E%3Cstop offset='100%25' stop-color='%239b6ffa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='1' y='1' width='38' height='38' rx='10' fill='url(%23g)'/%3E%3Crect x='8' y='22' width='6' height='10' rx='1.5' fill='white' opacity='0.7'/%3E%3Crect x='17' y='16' width='6' height='16' rx='1.5' fill='white' opacity='0.85'/%3E%3Crect x='26' y='10' width='6' height='22' rx='1.5' fill='white'/%3E%3C/svg%3E">
+<style>
+  /* Kleuren uit de app zelf (donker is de standaard, net als de opnamen). */
+  :root {
+    --bg: #0f1117; --surface: #1a1d27; --card: #212433; --border: #2e3148;
+    --text: #a0a8c0; --text-h: #e8eaf6; --text-dim: #5a607a;
+    --accent: #5c7cfa; --accent-2: #9b6ffa; --on-accent: #ffffff;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f5efe6; --surface: #fbf7f0; --card: #ffffff; --border: #d8cdb8;
+      --text: #5a4f3d; --text-h: #2a2218; --text-dim: #948568;
+      --accent: #4263eb; --accent-2: #7c4dff;
+      color-scheme: light;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 17px/1.6 system-ui, 'Segoe UI', Roboto, sans-serif;
+  }
+  a { color: var(--accent); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+  h1, h2, h3 { color: var(--text-h); line-height: 1.2; margin: 0; }
+
+  header { padding: 22px 0; }
+  .merk { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 20px; color: var(--text-h); }
+  .merk svg { width: 36px; height: 36px; }
+  .merk small { display: block; font-size: 13px; font-weight: 400; color: var(--text-dim); line-height: 1.2; }
+  .kopregel { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .maker { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-dim); text-decoration: none; }
+  .maker img { width: 28px; height: 28px; border-radius: 6px; }
+
+  .held { text-align: center; padding: 48px 0 32px; }
+  .held h1 { font-size: clamp(30px, 5vw, 48px); letter-spacing: -0.02em; }
+  .held p { max-width: 640px; margin: 18px auto 0; font-size: 19px; }
+  .knoppen { margin-top: 30px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .knop {
+    display: inline-block; padding: 14px 26px; border-radius: 10px; font-weight: 600;
+    text-decoration: none; font-size: 17px;
+  }
+  .knop-hoofd { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--on-accent); }
+  .knop-hoofd:hover { filter: brightness(1.08); }
+  .knop-bij { border: 1px solid var(--border); color: var(--text-h); }
+  .knop-bij:hover { background: var(--surface); }
+  .klein { font-size: 14px; color: var(--text-dim); margin-top: 14px; }
+
+  .opname {
+    display: block; width: 100%; height: auto; border-radius: 12px;
+    border: 1px solid var(--border); box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  }
+  .held .opname { margin-top: 44px; }
+
+  section { padding: 56px 0; }
+  section + section { border-top: 1px solid var(--border); }
+  .blok { display: grid; grid-template-columns: 1fr 1.4fr; gap: 40px; align-items: center; }
+  .blok + .blok { margin-top: 64px; }
+  .blok.om .tekst { order: 2; }
+  .blok h2 { font-size: 26px; margin-bottom: 12px; }
+  .blok p { margin: 0 0 10px; }
+
+  .kaarten { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 28px; }
+  .kaart { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 22px; }
+  .kaart h3 { font-size: 18px; margin-bottom: 8px; }
+  .kaart p { margin: 0; font-size: 16px; }
+  .midden { text-align: center; }
+  .midden h2 { font-size: 30px; }
+
+  .download { background: var(--surface); }
+  .download .kaart { text-align: left; }
+  .let-op {
+    max-width: 720px; margin: 32px auto 0; padding: 18px 22px; border-radius: 12px;
+    border: 1px solid var(--border); background: var(--card); font-size: 16px; text-align: left;
+  }
+  .let-op strong { color: var(--text-h); }
+
+  footer { padding: 40px 0 48px; font-size: 14px; color: var(--text-dim); text-align: center; border-top: 1px solid var(--border); }
+  footer img { display: block; width: 56px; height: 56px; border-radius: 12px; margin: 0 auto 10px; }
+  footer strong { display: block; color: var(--text-h); font-size: 16px; letter-spacing: 0.08em; }
+
+  @media (max-width: 760px) {
+    .blok, .kaarten { grid-template-columns: 1fr; gap: 20px; }
+    .blok.om .tekst { order: 0; }
+    .held { padding-top: 24px; }
+    section { padding: 40px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap kopregel">
+  <div class="merk">
+    <svg viewBox="0 0 40 40" aria-hidden="true">
+      <defs><linearGradient id="g" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#5c7cfa"/><stop offset="100%" stop-color="#9b6ffa"/></linearGradient></defs>
+      <rect x="1" y="1" width="38" height="38" rx="10" fill="url(#g)"/>
+      <rect x="8" y="22" width="6" height="10" rx="1.5" fill="white" opacity="0.7"/>
+      <rect x="17" y="16" width="6" height="16" rx="1.5" fill="white" opacity="0.85"/>
+      <rect x="26" y="10" width="6" height="22" rx="1.5" fill="white"/>
+    </svg>
+    <span>FBS<small>Financieel Beheer Systeem</small></span>
+  </div>
+  <span class="maker"><img src="assets/section-labs.png" alt="">Section Labs</span>
+  </div>
+</header>
+
+<main>
+  <div class="wrap held">
+    <h1>Zie waar je geld heen gaat,<br>zonder dat iemand anders meekijkt.</h1>
+    <p>FBS, het Financieel Beheer Systeem, is een Nederlandstalig programma voor je eigen financiën. Je leest de bestanden in die je bij je bank downloadt, en FBS maakt daar een overzicht van. Alles blijft op je eigen computer staan.</p>
+    <div class="knoppen">
+      <a class="knop knop-hoofd" href="https://github.com/NLSection/FBS-App-Client/releases/latest">Download FBS</a>
+      <a class="knop knop-bij" href="#wat">Wat doet het?</a>
+    </div>
+    <p class="klein">Gratis, voor Windows en macOS. Geen account nodig.</p>
+    <img class="opname" src="assets/dashboard.png" alt="Het dashboard van FBS">
+  </div>
+
+  <section id="wat">
+    <div class="wrap">
+      <div class="blok">
+        <div class="tekst">
+          <h2>Je boekingen, ingedeeld</h2>
+          <p>Sleep het bestand van je bank in FBS. Rabobank en ABN AMRO worden herkend, en boekingen die je al had worden overgeslagen.</p>
+          <p>Elke boeking krijgt een categorie. Dat doe je één keer per winkel of instantie: daarna deelt FBS de volgende keer zelf in.</p>
+        </div>
+        <img class="opname" src="assets/transacties.png" alt="De transactielijst" loading="lazy">
+      </div>
+
+      <div class="blok om">
+        <div class="tekst">
+          <h2>Potjes die kloppen met de werkelijkheid</h2>
+          <p>Zet geld opzij voor de auto, de boodschappen of een uitje, op een spaarrekening of alleen op papier. FBS houdt bij wat er werkelijk in zit.</p>
+          <p>Betaal je iets van de verkeerde rekening, dan laat Balans Potjes zien hoeveel je moet overboeken om het recht te zetten.</p>
+        </div>
+        <img class="opname" src="assets/potjes-budgetten.png" alt="Potjes en budgetten" loading="lazy">
+      </div>
+
+      <div class="blok">
+        <div class="tekst">
+          <h2>Vaste lasten in de gaten</h2>
+          <p>Huur, verzekeringen, abonnementen: FBS weet welke er elke maand horen te komen en laat zien welke nog ontbreken.</p>
+          <p>Wijkt een bedrag af van vorige maand, dan zie je dat meteen.</p>
+        </div>
+        <img class="opname" src="assets/vaste-posten.png" alt="Vaste posten" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap midden">
+      <h2>Je gegevens blijven bij jou</h2>
+      <div class="kaarten">
+        <div class="kaart"><h3>Geen cloud</h3><p>Er gaat niets naar een dienst van iemand anders. Je gegevens staan op je eigen computer, en verder nergens.</p></div>
+        <div class="kaart"><h3>Geen koppeling met je bank</h3><p>FBS leest alleen de bestanden die je zelf bij je bank ophaalt. Het logt nergens voor je in.</p></div>
+        <div class="kaart"><h3>Zelf back-ups</h3><p>FBS maakt versleutelde back-ups en kan een tweede kopie wegschrijven naar een map die jij kiest.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="download" id="download">
+    <div class="wrap midden">
+      <h2>Download FBS</h2>
+      <div class="knoppen">
+        <a class="knop knop-hoofd" href="https://github.com/NLSection/FBS-App-Client/releases/latest">Naar de nieuwste versie</a>
+      </div>
+      <div class="kaarten">
+        <div class="kaart"><h3>Windows</h3><p>Windows 10 of 11, 64-bit. Kies het bestand dat eindigt op <em>setup.exe</em> en voer het uit.</p></div>
+        <div class="kaart"><h3>macOS</h3><p>Voor Intel en Apple Silicon. Kies het bestand dat eindigt op <em>.dmg</em>, open het en sleep FBS naar Programma's.</p></div>
+        <div class="kaart"><h3>Daarna</h3><p>Je hoeft niets meer te downloaden. FBS meldt zelf wanneer er een nieuwe versie is en werkt zichzelf bij.</p></div>
+      </div>
+      <div class="let-op">
+        <strong>Een blauwe waarschuwing van Windows?</strong> Het installatiebestand is (nog) niet ondertekend, dus Windows kent het niet en toont <em>Windows heeft uw pc beschermd</em>. Klik op <em>Meer informatie</em> en daarna op <em>Toch uitvoeren</em>. Op de Mac kan iets vergelijkbaars gebeuren. Open dan de Systeeminstellingen, ga naar <em>Privacy en beveiliging</em> en sta FBS daar toe. Dat hoeft maar één keer.
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/section-labs.png" alt="Logo van Section Labs">
+    <strong>SECTION LABS</strong>
+    FBS wordt gemaakt door Section Labs.
+  </div>
+</footer>
+
+</body>
+</html>
