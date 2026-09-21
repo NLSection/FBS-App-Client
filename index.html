@@ -52,6 +52,8 @@
   .knop-bij { border: 1px solid var(--border); color: var(--text-h); }
   .knop-bij:hover { background: var(--surface); }
   .klein { font-size: 14px; color: var(--text-dim); margin-top: 14px; }
+  .klein + .klein { margin-top: 4px; }
+  [hidden] { display: none !important; }
 
   .opname {
     display: block; width: 100%; height: auto; border-radius: 12px;
@@ -117,10 +119,12 @@
     <h1>Zie waar je geld heen gaat,<br>zonder dat iemand anders meekijkt.</h1>
     <p>FBS, het Financieel Beheer Systeem, is een Nederlandstalig programma voor je eigen financiën. Je leest de bestanden in die je bij je bank downloadt, en FBS maakt daar een overzicht van. Alles blijft op je eigen computer staan.</p>
     <div class="knoppen">
-      <a class="knop knop-hoofd" href="https://github.com/NLSection/FBS-App-Client/releases/latest">Download FBS</a>
+      <a class="knop knop-hoofd" id="dl-windows" href="https://github.com/NLSection/FBS-App-Client/releases/latest">Download voor Windows</a>
+      <a class="knop knop-hoofd" id="dl-macos" href="https://github.com/NLSection/FBS-App-Client/releases/latest">Download voor macOS</a>
       <a class="knop knop-bij" href="#wat">Wat doet het?</a>
     </div>
-    <p class="klein">Gratis, voor Windows en macOS. Geen account nodig.</p>
+    <p class="klein" id="ander-systeem" hidden>Ook beschikbaar voor <a id="dl-ander" href="https://github.com/NLSection/FBS-App-Client/releases/latest"></a></p>
+    <p class="klein"><span id="versie"></span>Gratis. Geen account nodig.</p>
     <img class="opname" src="assets/dashboard.png" alt="Het dashboard van FBS">
   </div>
 
@@ -170,11 +174,11 @@
     <div class="wrap midden">
       <h2>Download FBS</h2>
       <div class="knoppen">
-        <a class="knop knop-hoofd" href="https://github.com/NLSection/FBS-App-Client/releases/latest">Naar de nieuwste versie</a>
+        <a class="knop knop-bij" href="https://github.com/NLSection/FBS-App-Client/releases">Alle versies bekijken</a>
       </div>
       <div class="kaarten">
-        <div class="kaart"><h3>Windows</h3><p>Windows 10 of 11, 64-bit. Kies het bestand dat eindigt op <em>setup.exe</em> en voer het uit.</p></div>
-        <div class="kaart"><h3>macOS</h3><p>Voor Intel en Apple Silicon. Kies het bestand dat eindigt op <em>.dmg</em>, open het en sleep FBS naar Programma's.</p></div>
+        <div class="kaart"><h3>Windows</h3><p>Windows 10 of 11, 64-bit. Voer het gedownloade installatiebestand uit.</p></div>
+        <div class="kaart"><h3>macOS</h3><p>Voor Intel en Apple Silicon. Open het gedownloade schijfbestand en sleep FBS naar Programma's.</p></div>
         <div class="kaart"><h3>Daarna</h3><p>Je hoeft niets meer te downloaden. FBS meldt zelf wanneer er een nieuwe versie is en werkt zichzelf bij.</p></div>
       </div>
       <div class="let-op">
@@ -192,5 +196,35 @@
   </div>
 </footer>
 
+<script>
+  // Herkent de pagina het systeem van de bezoeker, dan blijft alleen die knop staan
+  // en komt het andere systeem als kleine regel eronder. Een iPad meldt zich als
+  // Mac, dus een Mac met aanraakscherm telt als onbekend: dan blijven beide knoppen.
+  const knop = { windows: document.getElementById('dl-windows'), macos: document.getElementById('dl-macos') };
+  const naam = { windows: 'Windows', macos: 'macOS' };
+  const plat = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || navigator.userAgent;
+  const eigen = /win/i.test(plat) ? 'windows' : (/mac/i.test(plat) && navigator.maxTouchPoints < 2) ? 'macos' : null;
+  const ander = eigen === 'windows' ? 'macos' : eigen === 'macos' ? 'windows' : null;
+  if (ander) {
+    knop[ander].hidden = true;
+    document.getElementById('dl-ander').textContent = naam[ander];
+    document.getElementById('ander-systeem').hidden = false;
+  }
+
+  // De bestandsnamen dragen het versienummer, dus de knoppen worden bij het laden
+  // naar de bestanden van de nieuwste uitgave gezet. Lukt dat niet, dan blijven ze
+  // naar de pagina van de nieuwste uitgave wijzen, waar je zelf het bestand kiest.
+  fetch('https://api.github.com/repos/NLSection/FBS-App-Client/releases/latest')
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(rel => {
+      const zoek = eind => rel.assets.find(a => a.name.endsWith(eind));
+      const win = zoek('-setup.exe'), mac = zoek('.dmg');
+      if (win) knop.windows.href = win.browser_download_url;
+      if (mac) knop.macos.href = mac.browser_download_url;
+      if (ander) document.getElementById('dl-ander').href = knop[ander].href;
+      document.getElementById('versie').textContent = 'Versie ' + rel.tag_name.replace(/^v/, '') + '. ';
+    })
+    .catch(() => {});
+</script>
 </body>
 </html>
