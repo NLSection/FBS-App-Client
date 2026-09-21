@@ -84,6 +84,20 @@
   }
   .let-op strong { color: var(--text-h); }
 
+  .uitleg {
+    width: min(560px, calc(100vw - 32px)); padding: 28px; border-radius: 14px;
+    border: 1px solid var(--border); background: var(--card); color: var(--text);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  }
+  .uitleg::backdrop { background: rgba(0,0,0,0.6); }
+  .uitleg h2 { font-size: 22px; margin-bottom: 6px; }
+  .uitleg .sub { margin: 0 0 18px; font-size: 15px; color: var(--text-dim); }
+  .uitleg ol { margin: 0; padding-left: 22px; }
+  .uitleg li { margin-bottom: 10px; }
+  .uitleg li strong, .uitleg em { color: var(--text-h); }
+  .uitleg .waarom { margin: 16px 0 0; font-size: 14px; color: var(--text-dim); }
+  .uitleg .knop { margin-top: 20px; border: 0; cursor: pointer; font: inherit; font-weight: 600; }
+
   footer { padding: 40px 0 48px; font-size: 14px; color: var(--text-dim); text-align: center; border-top: 1px solid var(--border); }
   footer img { display: block; width: 56px; height: 56px; border-radius: 12px; margin: 0 auto 10px; }
   footer strong { display: block; color: var(--text-h); font-size: 16px; letter-spacing: 0.08em; }
@@ -188,6 +202,33 @@
   </section>
 </main>
 
+<dialog class="uitleg" id="uitleg-windows">
+  <h2>Je download is begonnen</h2>
+  <p class="sub">Zo installeer je FBS op Windows.</p>
+  <ol>
+    <li>Zegt je browser dat het bestand <em>niet vaak wordt gedownload</em>? Ga in het downloadoverzicht met de muis over het bestand, klik op de drie puntjes en kies <strong>Behouden</strong>. Volgt er nog een venster van Microsoft Defender SmartScreen, klik dan op het pijltje naast <strong>Verwijderen</strong> en kies <strong>Toch behouden</strong>.</li>
+    <li>Open het gedownloade installatiebestand.</li>
+    <li>Verschijnt er een blauw scherm met <em>Windows heeft uw pc beschermd</em>? Klik op <strong>Meer informatie</strong> en daarna op <strong>Toch uitvoeren</strong>.</li>
+    <li>Volg de stappen van het installatieprogramma. Daarna staat FBS in het startmenu.</li>
+  </ol>
+  <p class="waarom">Waarom die waarschuwing? Het installatiebestand is nog niet ondertekend met een betaald certificaat, dus Windows kent het niet. Met FBS zelf is niets mis.</p>
+  <form method="dialog"><button class="knop knop-hoofd">Begrepen</button></form>
+</dialog>
+
+<dialog class="uitleg" id="uitleg-macos">
+  <h2>Je download is begonnen</h2>
+  <p class="sub">Zo installeer je FBS op macOS.</p>
+  <ol>
+    <li>Open het gedownloade schijfbestand en sleep FBS naar <strong>Programma's</strong>.</li>
+    <li>Open FBS vanuit Programma's. De eerste keer meldt macOS dat het de app niet kan controleren. Klik die melding weg.</li>
+    <li>Open de <strong>Systeeminstellingen</strong>, ga naar <strong>Privacy en beveiliging</strong> en scrol naar beneden. Daar staat een melding over FBS met een knop om de app toch te openen. Klik daarop en bevestig.</li>
+    <li>Vanaf nu opent FBS gewoon. Dit hoef je maar één keer te doen.</li>
+  </ol>
+  <p class="waarom">Waarom die melding? FBS is nog niet bij Apple aangemeld, want dat kost een betaald ontwikkelaarsaccount. Met FBS zelf is niets mis.</p>
+  <form method="dialog"><button class="knop knop-hoofd">Begrepen</button></form>
+</dialog>
+
+
 <footer>
   <div class="wrap">
     <img src="assets/section-labs.png" alt="Logo van Section Labs">
@@ -225,6 +266,13 @@
       document.getElementById('versie').textContent = 'Versie ' + rel.tag_name.replace(/^v/, '') + '. ';
     })
     .catch(() => {});
+
+  // Bij een klik op een downloadknop gaat de download gewoon door, en verschijnt
+  // ernaast de uitleg voor dat systeem: de waarschuwing die volgt is anders
+  // precies het moment waarop iemand afhaakt.
+  document.getElementById('dl-windows').addEventListener('click', () => document.getElementById('uitleg-windows').showModal());
+  document.getElementById('dl-macos').addEventListener('click', () => document.getElementById('uitleg-macos').showModal());
+  document.getElementById('dl-ander').addEventListener('click', () => ander && document.getElementById('uitleg-' + ander).showModal());
 </script>
 </body>
 </html>
