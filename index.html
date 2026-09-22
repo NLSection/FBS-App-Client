@@ -79,6 +79,7 @@
   .kaart p { margin: 0; font-size: 16px; }
   .midden { text-align: center; }
   .midden h2 { font-size: 30px; }
+  .sub-midden { max-width: 640px; margin: 12px auto 0; }
 
   .download { background: var(--surface); }
   .download .kaart { text-align: left; }
@@ -142,7 +143,7 @@
       <a class="knop knop-bij" href="#wat">Wat doet het?</a>
     </div>
     <p class="klein" id="ander-systeem" hidden>Ook beschikbaar voor <a id="dl-ander" href="https://github.com/NLSection/FBS-App-Client/releases/latest"></a></p>
-    <p class="klein">Gratis. Geen account nodig.<span id="downloads"></span></p>
+    <p class="klein">Gratis. Geen account nodig. Voor <a href="#banken">Rabobank en ABN AMRO</a>.<span id="downloads"></span></p>
     <img class="opname" src="assets/dashboard.png" alt="Het dashboard van FBS">
   </div>
 
@@ -173,6 +174,18 @@
           <p>Wijkt een bedrag af van vorige maand, dan zie je dat meteen.</p>
         </div>
         <img class="opname" src="assets/vaste-posten.png" alt="Vaste posten" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section id="banken">
+    <div class="wrap midden">
+      <h2>Welke banken werken met FBS?</h2>
+      <p class="sub-midden">FBS leest het bestand dat je zelf bij je bank downloadt. Van Rabobank en ABN AMRO is dat bestand getest en nagekeken.</p>
+      <div class="kaarten">
+        <div class="kaart"><h3>Rabobank</h3><p>Download je transacties als <em>CSV</em>.</p></div>
+        <div class="kaart"><h3>ABN AMRO</h3><p>Kies bij het downloaden van je afschrift voor <em>CAMT.053</em>.</p></div>
+        <div class="kaart"><h3>Andere banken</h3><p>Biedt je bank <em>CAMT.053</em> aan, dan leest FBS het bestand in, maar namen en omschrijvingen kunnen rommelig zijn. FBS waarschuwt je dan. Laat ons weten welke bank je gebruikt, dan nemen we hem op.</p></div>
       </div>
     </div>
   </section>
