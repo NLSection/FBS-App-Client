@@ -57,6 +57,8 @@
   .knop-bij:hover { background: var(--surface); }
   .klein { font-size: 14px; color: var(--text-dim); margin-top: 14px; }
   .klein + .klein { margin-top: 4px; }
+  .klein a { color: inherit; text-decoration: underline dotted; text-underline-offset: 3px; }
+  .klein a:hover { color: var(--text-h); }
   [hidden] { display: none !important; }
 
   .opname {
@@ -79,6 +81,11 @@
   .kaart p { margin: 0; font-size: 16px; }
   .midden { text-align: center; }
   .midden h2 { font-size: 30px; }
+  /* Iconen: paden uit lucide 1.7 (landmark, file-question-mark), dezelfde set als de app. */
+  .bank-icoon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 12px; margin-bottom: 14px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--on-accent); }
+  .bank-icoon svg { width: 26px; height: 26px; }
+  .kaart.bank.anders .bank-icoon { background: var(--surface); color: var(--text-dim); border: 1px solid var(--border); }
+  #banken .kaart { text-align: center; }
   .sub-midden { max-width: 640px; margin: 12px auto 0; }
 
   .download { background: var(--surface); }
@@ -183,9 +190,9 @@
       <h2>Welke banken werken met FBS?</h2>
       <p class="sub-midden">FBS leest het bestand dat je zelf bij je bank downloadt. Van Rabobank en ABN AMRO is dat bestand getest en nagekeken.</p>
       <div class="kaarten">
-        <div class="kaart"><h3>Rabobank</h3><p>Download je transacties als <em>CSV</em>.</p></div>
-        <div class="kaart"><h3>ABN AMRO</h3><p>Kies bij het downloaden van je afschrift voor <em>CAMT.053</em>.</p></div>
-        <div class="kaart"><h3>Andere banken</h3><p>Biedt je bank <em>CAMT.053</em> aan, dan leest FBS het bestand in, maar namen en omschrijvingen kunnen rommelig zijn. FBS waarschuwt je dan. Laat ons weten welke bank je gebruikt, dan nemen we hem op.</p></div>
+        <div class="kaart bank"><span class="bank-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 18v-7"/><path d="M11.12 2.198a2 2 0 0 1 1.76.006l7.866 3.847c.476.233.31.949-.22.949H3.474c-.53 0-.695-.716-.22-.949z"/><path d="M14 18v-7"/><path d="M18 18v-7"/><path d="M3 22h18"/><path d="M6 18v-7"/></svg></span><h3>Rabobank</h3><p>Download je transacties als <em>CSV</em>.</p></div>
+        <div class="kaart bank"><span class="bank-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 18v-7"/><path d="M11.12 2.198a2 2 0 0 1 1.76.006l7.866 3.847c.476.233.31.949-.22.949H3.474c-.53 0-.695-.716-.22-.949z"/><path d="M14 18v-7"/><path d="M18 18v-7"/><path d="M3 22h18"/><path d="M6 18v-7"/></svg></span><h3>ABN AMRO</h3><p>Kies bij het downloaden van je afschrift voor <em>CAMT.053</em>.</p></div>
+        <div class="kaart bank anders"><span class="bank-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M12 17h.01"/><path d="M9.1 9a3 3 0 0 1 5.82 1c0 2-3 3-3 3"/></svg></span><h3>Andere banken</h3><p>Nog niet ondersteund. Biedt je bank <em>CAMT.053</em> aan, dan kun je het proberen: bedragen en datums komen goed binnen, maar namen en omschrijvingen kunnen rommelig zijn. FBS waarschuwt je daar dan voor.</p></div>
       </div>
     </div>
   </section>
