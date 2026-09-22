@@ -12,6 +12,7 @@
     --bg: #0f1117; --surface: #1a1d27; --card: #212433; --border: #2e3148;
     --text: #a0a8c0; --text-h: #e8eaf6; --text-dim: #5a607a;
     --accent: #5c7cfa; --accent-2: #9b6ffa; --on-accent: #ffffff;
+    --accent-dim: rgba(92, 124, 250, 0.15); --overlay: rgba(0, 0, 0, 0.6);
     color-scheme: dark;
   }
   @media (prefers-color-scheme: light) {
@@ -19,6 +20,7 @@
       --bg: #f5efe6; --surface: #fbf7f0; --card: #ffffff; --border: #d8cdb8;
       --text: #5a4f3d; --text-h: #2a2218; --text-dim: #948568;
       --accent: #4263eb; --accent-2: #7c4dff;
+      --accent-dim: rgba(66, 99, 235, 0.10); --overlay: rgba(42, 34, 24, 0.45);
       color-scheme: light;
     }
   }
@@ -95,27 +97,51 @@
     border: 1px solid var(--border); background: var(--card); font-size: 16px; text-align: left;
   }
   .let-op strong { color: var(--text-h); }
+  /* Vaste inspringing: iconen in een kolom van 22 px, tekst begint daarna op 34 px, en
+     alles onder de titel springt één stap in (34 px), en alles wat onder een
+     onderdeel valt lijnt uit op de tekst van dat onderdeel. */
+  .let-op h3 { font-size: 20px; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+  .let-op h3 .ic { width: 22px; height: 22px; color: var(--accent); flex-shrink: 0; }
+  .uitlegrij { display: flex; gap: 12px; align-items: flex-start; margin: 0 0 16px 34px; }
+  .uitlegrij .ic { width: 18px; height: 18px; color: var(--accent); flex-shrink: 0; margin: 3px 2px 0; }
+  .uitlegrij p > strong:first-child { display: block; margin-bottom: 4px; }
+  .uitlegrij p { margin: 0; }
+  .stap-kolom h4 .ic { width: 16px; height: 16px; color: var(--accent); vertical-align: -2px; margin-right: 8px; }
+  .let-op .stappen { margin: -8px 0 16px 68px; }
+  .stappen { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 12px; }
+  .stap-kolom { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; }
+  .stap-kolom h4 { margin: 0 0 8px; color: var(--text-h); font-size: 16px; }
+  .stap-kolom ol { margin: 0; padding-left: 24px; }
+  .stap-kolom li { margin-bottom: 8px; }
+  .uitlegrij.bron { margin-bottom: 0; font-size: 15px; color: var(--text-dim); }
+  .dialoog-inhoud .let-op { max-width: none; margin: 0; padding: 0; border: 0; background: none; }
+  .dialoog-inhoud .stappen { grid-template-columns: 1fr; }
 
+  /* Vensters in de vorm van de app (components/Modal.tsx): titelbalk in --accent-dim met
+     icoon en kruisje, inhoud met eigen scroll, knoppenrij rechts onderin. */
   .uitleg {
-    width: min(560px, calc(100vw - 32px)); padding: 28px; border-radius: 14px;
-    border: 1px solid var(--border); background: var(--card); color: var(--text);
-    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    width: min(640px, calc(100vw - 32px)); max-height: calc(100vh - 48px); padding: 0;
+    border-radius: 12px; border: 1px solid var(--border); background: var(--card); color: var(--text);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4); overflow: hidden;
   }
-  .uitleg::backdrop { background: rgba(0,0,0,0.6); }
-  .uitleg h2 { font-size: 22px; margin-bottom: 6px; }
-  .uitleg .sub { margin: 0 0 18px; font-size: 15px; color: var(--text-dim); }
-  .uitleg ol { margin: 0; padding-left: 22px; }
-  .uitleg li { margin-bottom: 10px; }
-  .uitleg li strong, .uitleg em { color: var(--text-h); }
-  .uitleg .waarom { margin: 16px 0 0; font-size: 14px; color: var(--text-dim); }
-  .uitleg .knop { margin-top: 20px; border: 0; cursor: pointer; font: inherit; font-weight: 600; }
+  .uitleg[open] { display: flex; flex-direction: column; }
+  .uitleg::backdrop { background: var(--overlay); }
+  .venster-kop { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; background: var(--accent-dim); border-bottom: 1px solid var(--border); flex-shrink: 0; }
+  .venster-kop span { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--text-h); }
+  .venster-kop .ic { width: 16px; height: 16px; color: var(--accent); }
+  .venster-sluit { background: none; border: 0; color: var(--text-dim); font-size: 18px; line-height: 1; cursor: pointer; padding: 4px; border-radius: 6px; }
+  .venster-sluit:hover { color: var(--text-h); background: var(--surface); }
+  .venster-inhoud { padding: 20px; overflow-y: auto; min-height: 0; }
+  .venster-voet { display: flex; justify-content: flex-end; padding: 12px 20px; border-top: 1px solid var(--border); flex-shrink: 0; margin: 0; }
+  .venster-voet .knop { border: 0; cursor: pointer; font: inherit; font-weight: 600; padding: 10px 22px; }
 
   footer { padding: 40px 0 48px; font-size: 14px; color: var(--text-dim); text-align: center; border-top: 1px solid var(--border); }
   footer img { display: block; width: 56px; height: 56px; border-radius: 12px; margin: 0 auto 10px; }
   footer strong { display: block; color: var(--text-h); font-size: 16px; letter-spacing: 0.08em; }
 
   @media (max-width: 760px) {
-    .blok, .kaarten { grid-template-columns: 1fr; gap: 20px; }
+    .blok, .kaarten, .stappen { grid-template-columns: 1fr; gap: 20px; }
+    .let-op .stappen, .uitlegrij { margin-left: 0; }
     .blok.om .tekst { order: 0; }
     .held { padding-top: 24px; }
     section { padding: 40px 0; }
@@ -219,8 +245,32 @@
         <div class="kaart"><h3>macOS</h3><p>macOS 14 (Sonoma) of nieuwer, voor Intel en Apple Silicon. Getest op macOS 15 en 26. Open het gedownloade schijfbestand en sleep FBS naar Programma's.</p></div>
         <div class="kaart"><h3>Daarna</h3><p>Je hoeft niets meer te downloaden. FBS meldt zelf wanneer er een nieuwe versie is en werkt zichzelf bij.</p></div>
       </div>
-      <div class="let-op">
-        <strong>Een blauwe waarschuwing van Windows?</strong> Het installatiebestand is (nog) niet ondertekend, dus Windows kent het niet en toont <em>Windows heeft uw pc beschermd</em>. Klik op <em>Meer informatie</em> en daarna op <em>Toch uitvoeren</em>. Op de Mac kan iets vergelijkbaars gebeuren. Open dan de Systeeminstellingen, ga naar <em>Privacy en beveiliging</em> en sta FBS daar toe. Dat hoeft maar één keer.
+      <div class="let-op" id="waarschuwing">
+        <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>Een waarschuwing bij het downloaden of installeren?</h3>
+        <div class="uitlegrij"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><p><strong>Waar gaat de waarschuwing over?</strong> Windows en macOS kijken of een programma is ondertekend: een digitale handtekening waarmee de maker aantoont wie hij is. FBS heeft die nog niet. Je computer kan dus niet controleren wie het bestand gemaakt heeft, en waarschuwt daarom. Het betekent niet dat er een virus of iets anders verdachts in het bestand is gevonden. Meldt je browser dat het bestand <em>niet vaak wordt gedownload</em>, dan komt dat doordat FBS nog nieuw is.</p></div>
+        <div class="uitlegrij"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><p><strong>Waarom nog geen handtekening?</strong> FBS wordt gemaakt door één ontwikkelaar. Een handtekening kost geld: voor de Mac ongeveer honderd euro per jaar, voor Windows honderd tot een paar honderd euro per jaar. Dat loont nu nog niet, maar het staat op de planning voor als FBS groeit.</p></div>
+        <div class="uitlegrij"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 5h8"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/></svg><p><strong>Wat moet je doen?</strong></p></div>
+        <div class="stappen">
+          <div class="stap-kolom" data-os="windows">
+            <h4><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>Windows</h4>
+            <ol>
+              <li>Zegt je browser dat het bestand <em>niet vaak wordt gedownload</em>? Ga in het downloadoverzicht met de muis over het bestand, klik op de drie puntjes en kies <strong>Behouden</strong>. Volgt er nog een venster van Microsoft Defender SmartScreen, klik dan op het pijltje naast <strong>Verwijderen</strong> en kies <strong>Toch behouden</strong>.</li>
+              <li>Open het gedownloade installatiebestand.</li>
+              <li>Verschijnt er een blauw scherm met <em>Windows heeft uw pc beschermd</em>? Klik op <strong>Meer informatie</strong> en daarna op <strong>Toch uitvoeren</strong>.</li>
+              <li>Volg de stappen van het installatieprogramma. Daarna staat FBS in het startmenu.</li>
+            </ol>
+          </div>
+          <div class="stap-kolom" data-os="macos">
+            <h4><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"/><path d="M20.054 15.987H3.946"/></svg>macOS</h4>
+            <ol>
+              <li>Open het gedownloade schijfbestand en sleep FBS naar <strong>Programma's</strong>.</li>
+              <li>Open FBS vanuit Programma's. De eerste keer meldt macOS dat het de app niet kan controleren. Klik die melding weg.</li>
+              <li>Open de <strong>Systeeminstellingen</strong>, ga naar <strong>Privacy en beveiliging</strong> en scrol naar beneden. Daar staat een melding over FBS met een knop om de app toch te openen. Klik daarop en bevestig.</li>
+              <li>Vanaf nu opent FBS gewoon.</li>
+            </ol>
+          </div>
+        </div>
+        <div class="uitlegrij bron"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><p>Dit hoeft maar één keer. Download FBS alleen via deze pagina of via GitHub, dan weet je zeker dat je het echte bestand hebt.</p></div>
       </div>
     </div>
   </section>
@@ -237,30 +287,19 @@
   </section>
 </main>
 
-<dialog class="uitleg" id="uitleg-windows">
-  <h2>Je download is begonnen</h2>
-  <p class="sub">Zo installeer je FBS op Windows.</p>
-  <ol>
-    <li>Zegt je browser dat het bestand <em>niet vaak wordt gedownload</em>? Ga in het downloadoverzicht met de muis over het bestand, klik op de drie puntjes en kies <strong>Behouden</strong>. Volgt er nog een venster van Microsoft Defender SmartScreen, klik dan op het pijltje naast <strong>Verwijderen</strong> en kies <strong>Toch behouden</strong>.</li>
-    <li>Open het gedownloade installatiebestand.</li>
-    <li>Verschijnt er een blauw scherm met <em>Windows heeft uw pc beschermd</em>? Klik op <strong>Meer informatie</strong> en daarna op <strong>Toch uitvoeren</strong>.</li>
-    <li>Volg de stappen van het installatieprogramma. Daarna staat FBS in het startmenu.</li>
-  </ol>
-  <p class="waarom">Waarom die waarschuwing? Het installatiebestand is nog niet ondertekend met een betaald certificaat, dus Windows kent het niet. Met FBS zelf is niets mis.</p>
-  <form method="dialog"><button class="knop knop-hoofd">Begrepen</button></form>
+<!-- De inhoud van deze vensters wordt bij het laden overgenomen uit het kader
+     #waarschuwing (stappen per systeem plus de uitleg), zodat die tekst maar op
+     één plek staat. -->
+<dialog class="uitleg" id="uitleg-windows" data-os="windows">
+  <div class="venster-kop"><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>Je download is begonnen</span><button type="button" class="venster-sluit" aria-label="Sluiten">✕</button></div>
+  <div class="venster-inhoud dialoog-inhoud"></div>
+  <form method="dialog" class="venster-voet"><button class="knop knop-hoofd">Begrepen</button></form>
 </dialog>
 
-<dialog class="uitleg" id="uitleg-macos">
-  <h2>Je download is begonnen</h2>
-  <p class="sub">Zo installeer je FBS op macOS.</p>
-  <ol>
-    <li>Open het gedownloade schijfbestand en sleep FBS naar <strong>Programma's</strong>.</li>
-    <li>Open FBS vanuit Programma's. De eerste keer meldt macOS dat het de app niet kan controleren. Klik die melding weg.</li>
-    <li>Open de <strong>Systeeminstellingen</strong>, ga naar <strong>Privacy en beveiliging</strong> en scrol naar beneden. Daar staat een melding over FBS met een knop om de app toch te openen. Klik daarop en bevestig.</li>
-    <li>Vanaf nu opent FBS gewoon. Dit hoef je maar één keer te doen.</li>
-  </ol>
-  <p class="waarom">Waarom die melding? FBS is nog niet bij Apple aangemeld, want dat kost een betaald ontwikkelaarsaccount. Met FBS zelf is niets mis.</p>
-  <form method="dialog"><button class="knop knop-hoofd">Begrepen</button></form>
+<dialog class="uitleg" id="uitleg-macos" data-os="macos">
+  <div class="venster-kop"><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>Je download is begonnen</span><button type="button" class="venster-sluit" aria-label="Sluiten">✕</button></div>
+  <div class="venster-inhoud dialoog-inhoud"></div>
+  <form method="dialog" class="venster-voet"><button class="knop knop-hoofd">Begrepen</button></form>
 </dialog>
 
 
@@ -329,6 +368,16 @@
   document.getElementById('dl-windows').addEventListener('click', () => document.getElementById('uitleg-windows').showModal());
   document.getElementById('dl-macos').addEventListener('click', () => document.getElementById('uitleg-macos').showModal());
   document.getElementById('dl-ander').addEventListener('click', () => ander && document.getElementById('uitleg-' + ander).showModal());
+  // Vul de vensters met het kader #waarschuwing zoals het op de pagina staat, zodat
+  // de tekst maar op één plek staat. Alleen het vak van het gedownloade systeem blijft staan.
+  document.querySelectorAll('dialog.uitleg').forEach(d => {
+    d.querySelector('.venster-sluit').addEventListener('click', () => d.close());
+    d.addEventListener('click', e => { if (e.target === d) d.close(); });
+    const kader = document.getElementById('waarschuwing').cloneNode(true);
+    kader.removeAttribute('id');
+    kader.querySelectorAll('.stap-kolom:not([data-os="' + d.dataset.os + '"])').forEach(k => k.remove());
+    d.querySelector('.dialoog-inhoud').append(kader);
+  });
 </script>
 </body>
 </html>
