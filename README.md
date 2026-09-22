@@ -119,9 +119,11 @@ je door en legt per scherm uit wat je er doet.
 
 Haal de nieuwste versie op bij [Releases](../../releases).
 
-- **Windows:** het installatiebestand uitvoeren.
+- **Windows:** het installatiebestand uitvoeren. Windows 10 of 11, 64-bit;
+  getest op Windows 11.
 - **macOS:** het schijfbestand openen en FBS naar Programma's slepen. Deze versie
-  werkt op zowel Intel-Macs als Apple Silicon.
+  werkt op zowel Intel-Macs als Apple Silicon, met macOS 14 (Sonoma) of nieuwer;
+  getest op macOS 15 en 26.
 
 Daarna hoef je niets meer te downloaden: FBS meldt zelf wanneer er een nieuwe
 versie is en werkt zichzelf bij. In de instellingen kies je of je de stabiele
