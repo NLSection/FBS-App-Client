@@ -138,7 +138,7 @@
       <a class="knop knop-bij" href="#wat">Wat doet het?</a>
     </div>
     <p class="klein" id="ander-systeem" hidden>Ook beschikbaar voor <a id="dl-ander" href="https://github.com/NLSection/FBS-App-Client/releases/latest"></a></p>
-    <p class="klein"><span id="versie"></span>Gratis. Geen account nodig.</p>
+    <p class="klein"><span id="versie"></span>Gratis. Geen account nodig.<span id="downloads"></span></p>
     <img class="opname" src="assets/dashboard.png" alt="Het dashboard van FBS">
   </div>
 
@@ -275,6 +275,27 @@
       if (mac) knop.macos.href = mac.browser_download_url;
       if (ander) document.getElementById('dl-ander').href = knop[ander].href;
       document.getElementById('versie').textContent = 'Versie ' + rel.tag_name.replace(/^v/, '') + '. ';
+    })
+    .catch(() => {});
+
+  // Teller van downloads (22-09-2026). Telt bewust ook de updates mee (keuze van de
+  // maker): de Windows-installer, het schijfbestand en het updatebestand voor de Mac.
+  // Pas zichtbaar vanaf DREMPEL, en afgerond naar beneden, zodat het getal niet bij
+  // elk bezoek verspringt. Lukt het ophalen niet, dan staat er gewoon niets.
+  const DREMPEL = 500;
+  fetch('https://api.github.com/repos/NLSection/FBS-App-Client/releases?per_page=100')
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(uitgaven => {
+      let n = 0;
+      for (const u of uitgaven) {
+        for (const a of u.assets) {
+          if (/(x64-setup\.exe|\.dmg|\.app\.tar\.gz)$/.test(a.name)) n += a.download_count;
+        }
+      }
+      if (n < DREMPEL) return;
+      const stap = n >= 10000 ? 1000 : 100;
+      const afgerond = Math.floor(n / stap) * stap;
+      document.getElementById('downloads').textContent = ' ' + afgerond.toLocaleString('nl-NL') + '+ keer gedownload.';
     })
     .catch(() => {});
 
