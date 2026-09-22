@@ -1,6 +1,6 @@
 # FBS
 
-**Zie waar je geld heen gaat, zonder dat iemand anders meekijkt.**
+**Grip op je geld, zonder spreadsheet-goeroe te worden.**
 
 FBS is een Nederlandstalig programma voor je eigen financiën. Je leest de
 bestanden in die je bij je bank downloadt, en FBS maakt daar een overzicht van:
@@ -147,8 +147,9 @@ Er gaat niets naar een dienst van iemand anders. Geen account, geen koppeling
 met je bank, geen gegevens in een cloud. FBS leest de bestanden die jij zelf bij
 je bank ophaalt, en bewaart het resultaat op je eigen apparaat.
 
-Back-ups maakt FBS zelf, versleuteld, en je kunt er een tweede kopie van laten
-wegschrijven naar een map die je zelf kiest. Terugzetten kan vanuit de app.
+Back-ups maakt FBS zelf, op je eigen computer. Je kunt er een tweede kopie van
+laten wegschrijven naar een map die je zelf kiest, desgewenst versleuteld met een
+wachtwoord. Terugzetten kan vanuit de app.
 
 ---
 
