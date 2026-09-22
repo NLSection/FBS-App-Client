@@ -48,6 +48,9 @@
     text-decoration: none; font-size: 17px;
   }
   .knop-hoofd { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--on-accent); }
+  .knoppen .knop { display: flex; flex-direction: column; justify-content: center; }
+  .knop-versie { display: block; font-size: 13px; font-weight: 400; opacity: 0.85; margin-top: 2px; }
+  .knop-versie:empty { display: none; }
   /* Oplichten zonder filter: in sommige browsers verdween de knop bij aanwijzen (22-09-2026). */
   .knop-hoofd:hover { background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)), linear-gradient(135deg, var(--accent), var(--accent-2)); }
   .knop-bij { border: 1px solid var(--border); color: var(--text-h); }
@@ -131,15 +134,15 @@
 
 <main>
   <div class="wrap held">
-    <h1>Zie waar je geld heen gaat,<br>zonder dat iemand anders meekijkt.</h1>
+    <h1>Grip op je geld,<br>zonder spreadsheet-goeroe te worden.</h1>
     <p>FBS, het Financieel Beheer Systeem, is een Nederlandstalig programma voor je eigen financiën. Je leest de bestanden in die je bij je bank downloadt, en FBS maakt daar een overzicht van. Alles blijft op je eigen computer staan.</p>
     <div class="knoppen">
-      <a class="knop knop-hoofd" id="dl-windows" href="https://github.com/NLSection/FBS-App-Client/releases/latest">Download voor Windows</a>
-      <a class="knop knop-hoofd" id="dl-macos" href="https://github.com/NLSection/FBS-App-Client/releases/latest">Download voor macOS</a>
+      <a class="knop knop-hoofd" id="dl-windows" href="https://github.com/NLSection/FBS-App-Client/releases/latest">Download voor Windows<span class="knop-versie"></span></a>
+      <a class="knop knop-hoofd" id="dl-macos" href="https://github.com/NLSection/FBS-App-Client/releases/latest">Download voor macOS<span class="knop-versie"></span></a>
       <a class="knop knop-bij" href="#wat">Wat doet het?</a>
     </div>
     <p class="klein" id="ander-systeem" hidden>Ook beschikbaar voor <a id="dl-ander" href="https://github.com/NLSection/FBS-App-Client/releases/latest"></a></p>
-    <p class="klein"><span id="versie"></span>Gratis. Geen account nodig.<span id="downloads"></span></p>
+    <p class="klein">Gratis. Geen account nodig.<span id="downloads"></span></p>
     <img class="opname" src="assets/dashboard.png" alt="Het dashboard van FBS">
   </div>
 
@@ -180,7 +183,7 @@
       <div class="kaarten">
         <div class="kaart"><h3>Geen cloud</h3><p>Er gaat niets naar een dienst van iemand anders. Je gegevens staan op je eigen computer, en verder nergens.</p></div>
         <div class="kaart"><h3>Geen koppeling met je bank</h3><p>FBS leest alleen de bestanden die je zelf bij je bank ophaalt. Het logt nergens voor je in.</p></div>
-        <div class="kaart"><h3>Zelf back-ups</h3><p>FBS maakt versleutelde back-ups en kan een tweede kopie wegschrijven naar een map die jij kiest.</p></div>
+        <div class="kaart"><h3>Zelf back-ups</h3><p>FBS maakt zelf back-ups op je computer. Een tweede kopie kan naar een map die jij kiest, desgewenst versleuteld met een wachtwoord.</p></div>
       </div>
     </div>
   </section>
@@ -275,7 +278,7 @@
       if (win) knop.windows.href = win.browser_download_url;
       if (mac) knop.macos.href = mac.browser_download_url;
       if (ander) document.getElementById('dl-ander').href = knop[ander].href;
-      document.getElementById('versie').textContent = 'Versie ' + rel.tag_name.replace(/^v/, '') + '. ';
+      document.querySelectorAll('.knop-versie').forEach(el => el.textContent = 'Versie ' + rel.tag_name.replace(/^v/, ''));
     })
     .catch(() => {});
 
