@@ -48,7 +48,8 @@
     text-decoration: none; font-size: 17px;
   }
   .knop-hoofd { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--on-accent); }
-  .knop-hoofd:hover { filter: brightness(1.08); }
+  /* Oplichten zonder filter: in sommige browsers verdween de knop bij aanwijzen (22-09-2026). */
+  .knop-hoofd:hover { background: linear-gradient(rgba(255,255,255,0.1), rgba(255,255,255,0.1)), linear-gradient(135deg, var(--accent), var(--accent-2)); }
   .knop-bij { border: 1px solid var(--border); color: var(--text-h); }
   .knop-bij:hover { background: var(--surface); }
   .klein { font-size: 14px; color: var(--text-dim); margin-top: 14px; }
