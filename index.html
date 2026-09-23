@@ -13,7 +13,7 @@
 <meta property="og:locale" content="nl_NL">
 <meta property="og:site_name" content="FBS">
 <meta property="og:title" content="FBS, Financieel Beheer Systeem">
-<meta property="og:description" content="Grip op je geld, zonder spreadsheet-goeroe te worden. Gratis, voor Windows en macOS, en alles blijft op je eigen computer.">
+<meta property="og:description" content="Grip op je geld, zonder spreadsheet-goeroe te zijn. Gratis, voor Windows en macOS, en alles blijft op je eigen computer.">
 <meta property="og:url" content="https://fbs.section-labs.nl/">
 <meta property="og:image" content="https://fbs.section-labs.nl/assets/voorvertoning.jpg">
 <meta property="og:image:width" content="1200">
@@ -26,7 +26,7 @@
     --bg: #0f1117; --surface: #1a1d27; --card: #212433; --border: #2e3148;
     --text: #a0a8c0; --text-h: #e8eaf6; --text-dim: #5a607a;
     --accent: #5c7cfa; --accent-2: #9b6ffa; --on-accent: #ffffff;
-    --accent-dim: rgba(92, 124, 250, 0.15); --overlay: rgba(0, 0, 0, 0.6);
+    --accent-dim: rgba(92, 124, 250, 0.15); --overlay: rgba(0, 0, 0, 0.6); --gloed: rgba(92, 124, 250, 0.30);
     color-scheme: dark;
   }
   @media (prefers-color-scheme: light) {
@@ -34,7 +34,7 @@
       --bg: #f5efe6; --surface: #fbf7f0; --card: #ffffff; --border: #d8cdb8;
       --text: #5a4f3d; --text-h: #2a2218; --text-dim: #948568;
       --accent: #4263eb; --accent-2: #7c4dff;
-      --accent-dim: rgba(66, 99, 235, 0.10); --overlay: rgba(42, 34, 24, 0.45);
+      --accent-dim: rgba(66, 99, 235, 0.10); --overlay: rgba(42, 34, 24, 0.45); --gloed: rgba(66, 99, 235, 0.22);
       color-scheme: light;
     }
   }
@@ -65,6 +65,8 @@
   }
   .knop-hoofd { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--on-accent); }
   .knoppen .knop { display: flex; flex-direction: column; justify-content: center; }
+  .knop-regel { display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
+  .knop-regel svg { width: 18px; height: 18px; flex-shrink: 0; }
   .knop-versie { display: block; font-size: 13px; font-weight: 400; opacity: 0.85; margin-top: 2px; }
   .knop-versie:empty { display: none; }
   /* Oplichten zonder filter: in sommige browsers verdween de knop bij aanwijzen (22-09-2026). */
@@ -81,7 +83,7 @@
     display: block; width: 100%; height: auto; border-radius: 12px;
     border: 1px solid var(--border); box-shadow: 0 20px 60px rgba(0,0,0,0.35);
   }
-  .held .opname { margin-top: 44px; }
+  .held .opname { margin-top: 44px; box-shadow: 0 20px 60px rgba(0,0,0,0.35), 0 0 160px 20px var(--gloed); }
 
   section { padding: 56px 0; }
   section + section { border-top: 1px solid var(--border); }
@@ -97,24 +99,34 @@
   .kaart p { margin: 0; font-size: 16px; }
   .midden { text-align: center; }
   .midden h2 { font-size: 30px; }
-  /* Iconen: paden uit lucide 1.7 (landmark, file-question-mark), dezelfde set als de app. */
+  /* Iconen: paden uit lucide 1.7 (dezelfde set als de app). Uitzondering, op verzoek van de
+     gebruiker (23-09-2026): de logo's van Windows en Apple komen uit Simple Icons (CC0). */
   .bank-icoon { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 12px; margin-bottom: 14px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--on-accent); }
   .bank-icoon svg { width: 26px; height: 26px; }
-  .kaart.bank.anders .bank-icoon { background: var(--surface); color: var(--text-dim); border: 1px solid var(--border); }
   #banken .kaart { text-align: center; }
   .sub-midden { max-width: 640px; margin: 12px auto 0; }
 
-  .download { background: var(--surface); }
+  /* Om en om een lichtere tint, voor ritme bij het scrollen. */
+  .vlak { background: var(--surface); }
   .download .kaart { text-align: left; }
   .let-op {
-    max-width: 720px; margin: 32px auto 0; padding: 18px 22px; border-radius: 12px;
+    margin: 20px 0 0; padding: 18px 22px; border-radius: 12px;
     border: 1px solid var(--border); background: var(--card); font-size: 16px; text-align: left;
   }
   .let-op strong { color: var(--text-h); }
   /* Vaste inspringing: iconen in een kolom van 22 px, tekst begint daarna op 34 px, en
      alles onder de titel springt één stap in (34 px), en alles wat onder een
      onderdeel valt lijnt uit op de tekst van dat onderdeel. */
-  .let-op h3 { font-size: 20px; margin-bottom: 16px; display: flex; align-items: center; gap: 12px; }
+  .let-op h3 { font-size: 20px; margin: 0; display: flex; align-items: center; gap: 12px; }
+  .let-op > summary { list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .let-op > summary::-webkit-details-marker { display: none; }
+  .let-op > summary::after { content: '+'; color: var(--accent); font-size: 22px; line-height: 1; }
+  .let-op[open] > summary { margin-bottom: 16px; }
+  .let-op[open] > summary::after { content: '\2212'; }
+  .dialoog-inhoud .let-op > summary { pointer-events: none; }
+  .dialoog-inhoud .let-op > summary::after { content: none; }
+  .blok-label { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; color: var(--text-dim); margin-bottom: 10px; }
+  .blok-label .ic { width: 18px; height: 18px; color: var(--accent); }
   .let-op h3 .ic { width: 22px; height: 22px; color: var(--accent); flex-shrink: 0; }
   .uitlegrij { display: flex; gap: 12px; align-items: flex-start; margin: 0 0 16px 34px; }
   .uitlegrij .ic { width: 18px; height: 18px; color: var(--accent); flex-shrink: 0; margin: 3px 2px 0; }
@@ -210,11 +222,11 @@
 
 <main>
   <div class="wrap held">
-    <h1>Grip op je geld,<br>zonder spreadsheet-goeroe te worden.</h1>
+    <h1>Grip op je geld,<br>zonder spreadsheet-goeroe te zijn.</h1>
     <p>FBS, het Financieel Beheer Systeem, is een Nederlandstalig programma voor je eigen financiën. Je leest de bestanden in die je bij je bank downloadt, en FBS maakt daar een overzicht van. Alles blijft op je eigen computer staan.</p>
     <div class="knoppen">
-      <a class="knop knop-hoofd" id="dl-windows" href="https://github.com/NLSection/FBS-App-Client/releases/latest">Download voor Windows<span class="knop-versie"></span></a>
-      <a class="knop knop-hoofd" id="dl-macos" href="https://github.com/NLSection/FBS-App-Client/releases/latest">Download voor macOS<span class="knop-versie"></span></a>
+      <a class="knop knop-hoofd" id="dl-windows" href="https://github.com/NLSection/FBS-App-Client/releases/latest"><span class="knop-regel"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0,0H11.377V11.372H0ZM12.623,0H24V11.372H12.623ZM0,12.623H11.377V24H0Zm12.623,0H24V24H12.623"/></svg>Download voor Windows</span><span class="knop-versie"></span></a>
+      <a class="knop knop-hoofd" id="dl-macos" href="https://github.com/NLSection/FBS-App-Client/releases/latest"><span class="knop-regel"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>Download voor macOS</span><span class="knop-versie"></span></a>
       <a class="knop knop-bij" href="#wat">Wat doet het?</a>
     </div>
     <p class="klein" id="ander-systeem" hidden>Ook beschikbaar voor <a id="dl-ander" href="https://github.com/NLSection/FBS-App-Client/releases/latest"></a></p>
@@ -226,6 +238,7 @@
     <div class="wrap">
       <div class="blok">
         <div class="tekst">
+          <span class="blok-label"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h.01"/><path d="M3 12h.01"/><path d="M3 19h.01"/><path d="M8 5h13"/><path d="M8 12h13"/><path d="M8 19h13"/></svg>Transacties</span>
           <h2>Je boekingen, ingedeeld</h2>
           <p>Sleep het bestand van je bank in FBS. Rabobank en ABN AMRO worden herkend, en boekingen die je al had worden overgeslagen.</p>
           <p>Elke boeking krijgt een categorie. Dat doe je één keer per winkel of instantie: daarna deelt FBS de volgende keer zelf in.</p>
@@ -235,6 +248,7 @@
 
       <div class="blok om">
         <div class="tekst">
+          <span class="blok-label"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 17h3v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-3a3.16 3.16 0 0 0 2-2h1a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-1a5 5 0 0 0-2-4V3a4 4 0 0 0-3.2 1.6l-.3.4H11a6 6 0 0 0-6 6v1a5 5 0 0 0 2 4v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1z"/><path d="M16 10h.01"/><path d="M2 8v1a2 2 0 0 0 2 2h1"/></svg>Potjes &amp; Budgetten</span>
           <h2>Potjes die kloppen met de werkelijkheid</h2>
           <p>Zet geld opzij voor de auto, de boodschappen of een uitje, op een spaarrekening of alleen op papier. FBS houdt bij wat er werkelijk in zit.</p>
           <p>Betaal je iets van de verkeerde rekening, dan laat Balans Potjes zien hoeveel je moet overboeken om het recht te zetten.</p>
@@ -244,6 +258,7 @@
 
       <div class="blok">
         <div class="tekst">
+          <span class="blok-label"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>Vaste Posten</span>
           <h2>Vaste lasten in de gaten</h2>
           <p>Huur, verzekeringen, abonnementen: FBS weet welke er elke maand horen te komen en laat zien welke nog ontbreken.</p>
           <p>Wijkt een bedrag af van vorige maand, dan zie je dat meteen.</p>
@@ -253,7 +268,7 @@
     </div>
   </section>
 
-  <section id="banken">
+  <section id="banken" class="vlak">
     <div class="wrap midden">
       <h2>Welke banken werken met FBS?</h2>
       <p class="sub-midden">FBS leest het bestand dat je zelf bij je bank downloadt. Van Rabobank en ABN AMRO is dat bestand getest en nagekeken.</p>
@@ -274,13 +289,13 @@
     </div>
   </section>
 
-  <section>
+  <section class="vlak">
     <div class="wrap midden">
       <h2>Je gegevens blijven bij jou</h2>
       <div class="kaarten">
-        <div class="kaart"><h3>Geen cloud</h3><p>Er gaat niets naar een dienst van iemand anders. Je gegevens staan op je eigen computer, en verder nergens.</p></div>
-        <div class="kaart"><h3>Geen koppeling met je bank</h3><p>FBS leest alleen de bestanden die je zelf bij je bank ophaalt. Het logt nergens voor je in.</p></div>
-        <div class="kaart"><h3>Zelf back-ups</h3><p>FBS maakt zelf back-ups op je computer. Een tweede kopie kan naar een map die jij kiest, desgewenst versleuteld met een wachtwoord.</p></div>
+        <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.94 5.274A7 7 0 0 1 15.71 10h1.79a4.5 4.5 0 0 1 4.222 6.057"/><path d="M18.796 18.81A4.5 4.5 0 0 1 17.5 19H9A7 7 0 0 1 5.79 5.78"/><path d="m2 2 20 20"/></svg></span><h3>Geen cloud</h3><p>Er gaat niets naar een dienst van iemand anders. Je gegevens staan op je eigen computer, en verder nergens.</p></div>
+        <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18.84 12.25 1.72-1.71h-.02a5.004 5.004 0 0 0-.12-7.07 5.006 5.006 0 0 0-6.95 0l-1.72 1.71"/><path d="m5.17 11.75-1.71 1.71a5.004 5.004 0 0 0 .12 7.07 5.006 5.006 0 0 0 6.95 0l1.71-1.71"/><line x1="8" x2="8" y1="2" y2="5"/><line x1="2" x2="5" y1="8" y2="8"/><line x1="16" x2="16" y1="19" y2="22"/><line x1="19" x2="22" y1="16" y2="16"/></svg></span><h3>Geen koppeling met je bank</h3><p>FBS leest alleen de bestanden die je zelf bij je bank ophaalt. Het logt nergens voor je in.</p></div>
+        <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 16h.01"/><path d="M2.212 11.577a2 2 0 0 0-.212.896V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5.527a2 2 0 0 0-.212-.896L18.55 5.11A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><path d="M21.946 12.013H2.054"/><path d="M6 16h.01"/></svg></span><h3>Zelf back-ups</h3><p>FBS maakt zelf back-ups op je computer. Een tweede kopie kan naar een map die jij kiest, desgewenst versleuteld met een wachtwoord.</p></div>
       </div>
     </div>
   </section>
@@ -292,18 +307,18 @@
         <a class="knop knop-bij" href="https://github.com/NLSection/FBS-App-Client/releases">Alle versies bekijken</a>
       </div>
       <div class="kaarten">
-        <div class="kaart"><h3>Windows</h3><p>Windows 10 of 11, 64-bit. Getest op Windows 11. Voer het gedownloade installatiebestand uit.</p></div>
-        <div class="kaart"><h3>macOS</h3><p>macOS 14 (Sonoma) of nieuwer, voor Intel en Apple Silicon. Getest op macOS 15 en 26. Open het gedownloade schijfbestand en sleep FBS naar Programma's.</p></div>
-        <div class="kaart"><h3>Daarna</h3><p>Je hoeft niets meer te downloaden. FBS meldt zelf wanneer er een nieuwe versie is en werkt zichzelf bij.</p></div>
+        <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg class="" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0,0H11.377V11.372H0ZM12.623,0H24V11.372H12.623ZM0,12.623H11.377V24H0Zm12.623,0H24V24H12.623"/></svg></span><h3>Windows</h3><p>Windows 10 of 11, 64-bit. Getest op Windows 11. Voer het gedownloade installatiebestand uit.</p></div>
+        <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg class="" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg></span><h3>macOS</h3><p>macOS 14 (Sonoma) of nieuwer, voor Intel en Apple Silicon. Getest op macOS 15 en 26. Open het gedownloade schijfbestand en sleep FBS naar Programma's.</p></div>
+        <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg></span><h3>Updates</h3><p>Je hoeft niets meer te downloaden. FBS meldt zelf wanneer er een nieuwe versie is en werkt zichzelf bij.</p></div>
       </div>
-      <div class="let-op" id="waarschuwing">
-        <h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>Een waarschuwing bij het downloaden of installeren?</h3>
+      <details class="let-op" id="waarschuwing">
+        <summary><h3><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>Een waarschuwing bij het downloaden of installeren?</h3></summary>
         <div class="uitlegrij"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><p><strong>Waar gaat de waarschuwing over?</strong> Windows en macOS kijken of een programma is ondertekend: een digitale handtekening waarmee de maker aantoont wie hij is. FBS heeft die nog niet. Je computer kan dus niet controleren wie het bestand gemaakt heeft, en waarschuwt daarom. Het betekent niet dat er een virus of iets anders verdachts in het bestand is gevonden. Meldt je browser dat het bestand <em>niet vaak wordt gedownload</em>, dan komt dat doordat FBS nog nieuw is.</p></div>
         <div class="uitlegrij"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><p><strong>Waarom nog geen handtekening?</strong> FBS wordt gemaakt door één ontwikkelaar. Een handtekening kost geld: voor de Mac ongeveer honderd euro per jaar, voor Windows honderd tot een paar honderd euro per jaar. Dat loont nu nog niet, maar het staat op de planning voor als FBS groeit.</p></div>
         <div class="uitlegrij"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 5h8"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/></svg><p><strong>Wat moet je doen?</strong></p></div>
         <div class="stappen">
           <div class="stap-kolom" data-os="windows">
-            <h4><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg>Windows</h4>
+            <h4><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M0,0H11.377V11.372H0ZM12.623,0H24V11.372H12.623ZM0,12.623H11.377V24H0Zm12.623,0H24V24H12.623"/></svg>Windows</h4>
             <ol>
               <li>Zegt je browser dat het bestand <em>niet vaak wordt gedownload</em>? Ga in het downloadoverzicht met de muis over het bestand, klik op de drie puntjes en kies <strong>Behouden</strong>. Volgt er nog een venster van Microsoft Defender SmartScreen, klik dan op het pijltje naast <strong>Verwijderen</strong> en kies <strong>Toch behouden</strong>.</li>
               <li>Open het gedownloade installatiebestand.</li>
@@ -312,7 +327,7 @@
             </ol>
           </div>
           <div class="stap-kolom" data-os="macos">
-            <h4><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"/><path d="M20.054 15.987H3.946"/></svg>macOS</h4>
+            <h4><svg class="ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>macOS</h4>
             <ol>
               <li>Open het gedownloade schijfbestand en sleep FBS naar <strong>Programma's</strong>.</li>
               <li>Open FBS vanuit Programma's. De eerste keer meldt macOS dat het de app niet kan controleren. Klik die melding weg.</li>
@@ -322,11 +337,11 @@
           </div>
         </div>
         <div class="uitlegrij bron"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><p>Dit hoeft maar één keer. Download FBS alleen via deze pagina of via GitHub, dan weet je zeker dat je het echte bestand hebt.</p></div>
-      </div>
+      </details>
     </div>
   </section>
 
-  <section id="vragen">
+  <section id="vragen" class="vlak">
     <div class="wrap">
       <h2 class="midden-kop">Veelgestelde vragen</h2>
       <div class="vragen">
@@ -506,11 +521,13 @@
   document.getElementById('dl-ander').addEventListener('click', () => ander && document.getElementById('uitleg-' + ander).showModal());
   // Vul de vensters met het kader #waarschuwing zoals het op de pagina staat, zodat
   // de tekst maar op één plek staat. Alleen het vak van het gedownloade systeem blijft staan.
-  document.querySelectorAll('dialog.uitleg').forEach(d => {
+  // Alleen de installatievensters (met data-os); het privacyvenster heeft zijn eigen bediening.
+  document.querySelectorAll('dialog.uitleg[data-os]').forEach(d => {
     d.querySelector('.venster-sluit').addEventListener('click', () => d.close());
     d.addEventListener('click', e => { if (e.target === d) d.close(); });
     const kader = document.getElementById('waarschuwing').cloneNode(true);
     kader.removeAttribute('id');
+    kader.open = true;
     kader.querySelectorAll('.stap-kolom:not([data-os="' + d.dataset.os + '"])').forEach(k => k.remove());
     d.querySelector('.dialoog-inhoud').append(kader);
   });
