@@ -6,6 +6,20 @@
 <title>FBS, Financieel Beheer Systeem</title>
 <meta name="description" content="FBS, het Financieel Beheer Systeem, is een Nederlandstalig programma voor je eigen financiën. Je leest de bestanden van je bank in en FBS maakt er een overzicht van. Alles blijft op je eigen computer.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='40' y2='40' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0%25' stop-color='%235c7cfa'/%3E%3Cstop offset='100%25' stop-color='%239b6ffa'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='1' y='1' width='38' height='38' rx='10' fill='url(%23g)'/%3E%3Crect x='8' y='22' width='6' height='10' rx='1.5' fill='white' opacity='0.7'/%3E%3Crect x='17' y='16' width='6' height='16' rx='1.5' fill='white' opacity='0.85'/%3E%3Crect x='26' y='10' width='6' height='22' rx='1.5' fill='white'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="assets/fbs-icoon.png">
+<link rel="canonical" href="https://fbs.section-labs.nl/">
+<!-- Voorvertoning bij het delen van de link (WhatsApp, mail, sociale media). -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:site_name" content="FBS">
+<meta property="og:title" content="FBS, Financieel Beheer Systeem">
+<meta property="og:description" content="Grip op je geld, zonder spreadsheet-goeroe te worden. Gratis, voor Windows en macOS, en alles blijft op je eigen computer.">
+<meta property="og:url" content="https://fbs.section-labs.nl/">
+<meta property="og:image" content="https://fbs.section-labs.nl/assets/voorvertoning.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Het dashboard van FBS">
+<meta name="twitter:card" content="summary_large_image">
 <style>
   /* Kleuren uit de app zelf (donker is de standaard, net als de opnamen). */
   :root {
@@ -139,6 +153,33 @@
   footer img { display: block; width: 56px; height: 56px; border-radius: 12px; margin: 0 auto 10px; }
   footer strong { display: block; color: var(--text-h); font-size: 16px; letter-spacing: 0.08em; }
 
+  /* Opnamen vergroten met een klik */
+  .opname { cursor: zoom-in; }
+  .vergroot { padding: 0; border: 0; background: none; max-width: 96vw; max-height: 94vh; cursor: zoom-out; }
+  .vergroot::backdrop { background: rgba(0, 0, 0, 0.85); }
+  .vergroot img { display: block; max-width: 96vw; max-height: 94vh; width: auto; height: auto; border-radius: 10px; }
+
+  /* Nieuw in deze versie */
+  #nieuw .kaart { text-align: left; }
+  #nieuw .kaart h3 { font-size: 17px; }
+
+  /* Veelgestelde vragen */
+  .midden-kop { text-align: center; font-size: 30px; margin-bottom: 28px; }
+  .vragen { max-width: 760px; margin: 0 auto; }
+  .vragen details { border: 1px solid var(--border); border-radius: 10px; background: var(--card); margin-bottom: 10px; }
+  .vragen summary { cursor: pointer; padding: 14px 18px; color: var(--text-h); font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+  .vragen summary::-webkit-details-marker { display: none; }
+  .vragen summary::after { content: '+'; color: var(--accent); font-size: 20px; line-height: 1; }
+  .vragen details[open] summary::after { content: '\2212'; }
+  .vragen details p { margin: 0; padding: 0 18px 16px; }
+
+  /* Voettekst en privacy */
+  .voet-links { margin-top: 10px; }
+  .voet-links a, .voet-links button { color: var(--text-dim); background: none; border: 0; font: inherit; cursor: pointer; padding: 0; text-decoration: underline dotted; text-underline-offset: 3px; }
+  .voet-links a:hover, .voet-links button:hover { color: var(--text-h); }
+  .privacy-tekst p { margin: 0 0 12px; }
+  .privacy-tekst strong { color: var(--text-h); }
+
   @media (max-width: 760px) {
     .blok, .kaarten, .stappen { grid-template-columns: 1fr; gap: 20px; }
     .let-op .stappen, .uitlegrij { margin-left: 0; }
@@ -177,7 +218,7 @@
     </div>
     <p class="klein" id="ander-systeem" hidden>Ook beschikbaar voor <a id="dl-ander" href="https://github.com/NLSection/FBS-App-Client/releases/latest"></a></p>
     <p class="klein">Gratis. Geen account nodig. Voor <a href="#banken">Rabobank en ABN AMRO</a>.<span id="downloads"></span></p>
-    <img class="opname" src="assets/dashboard.png" alt="Het dashboard van FBS">
+    <img class="opname" src="assets/dashboard-klein.jpg" data-groot="assets/dashboard.png" alt="Het dashboard van FBS">
   </div>
 
   <section id="wat">
@@ -188,7 +229,7 @@
           <p>Sleep het bestand van je bank in FBS. Rabobank en ABN AMRO worden herkend, en boekingen die je al had worden overgeslagen.</p>
           <p>Elke boeking krijgt een categorie. Dat doe je één keer per winkel of instantie: daarna deelt FBS de volgende keer zelf in.</p>
         </div>
-        <img class="opname" src="assets/transacties.png" alt="De transactielijst" loading="lazy">
+        <img class="opname" src="assets/transacties-klein.jpg" data-groot="assets/transacties.png" alt="De transactielijst" loading="lazy">
       </div>
 
       <div class="blok om">
@@ -197,7 +238,7 @@
           <p>Zet geld opzij voor de auto, de boodschappen of een uitje, op een spaarrekening of alleen op papier. FBS houdt bij wat er werkelijk in zit.</p>
           <p>Betaal je iets van de verkeerde rekening, dan laat Balans Potjes zien hoeveel je moet overboeken om het recht te zetten.</p>
         </div>
-        <img class="opname" src="assets/potjes-budgetten.png" alt="Potjes en budgetten" loading="lazy">
+        <img class="opname" src="assets/potjes-budgetten-klein.jpg" data-groot="assets/potjes-budgetten.png" alt="Potjes en budgetten" loading="lazy">
       </div>
 
       <div class="blok">
@@ -206,7 +247,7 @@
           <p>Huur, verzekeringen, abonnementen: FBS weet welke er elke maand horen te komen en laat zien welke nog ontbreken.</p>
           <p>Wijkt een bedrag af van vorige maand, dan zie je dat meteen.</p>
         </div>
-        <img class="opname" src="assets/vaste-posten.png" alt="Vaste posten" loading="lazy">
+        <img class="opname" src="assets/vaste-posten-klein.jpg" data-groot="assets/vaste-posten.png" alt="Vaste posten" loading="lazy">
       </div>
     </div>
   </section>
@@ -220,6 +261,15 @@
         <div class="kaart bank"><span class="bank-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 18v-7"/><path d="M11.12 2.198a2 2 0 0 1 1.76.006l7.866 3.847c.476.233.31.949-.22.949H3.474c-.53 0-.695-.716-.22-.949z"/><path d="M14 18v-7"/><path d="M18 18v-7"/><path d="M3 22h18"/><path d="M6 18v-7"/></svg></span><h3>ABN AMRO</h3><p>Kies bij het downloaden van je afschrift voor <em>CAMT.053</em>.</p></div>
         <div class="kaart bank anders"><span class="bank-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M12 17h.01"/><path d="M9.1 9a3 3 0 0 1 5.82 1c0 2-3 3-3 3"/></svg></span><h3>Andere banken</h3><p>Nog niet ondersteund. Biedt je bank <em>CAMT.053</em> aan, dan kun je het proberen: bedragen en datums komen goed binnen, maar namen en omschrijvingen kunnen rommelig zijn. FBS waarschuwt je daar dan voor.</p></div>
       </div>
+    </div>
+  </section>
+
+  <!-- Wordt gevuld uit de uitgavenotities van de nieuwste versie; blijft verborgen als dat niet lukt. -->
+  <section id="nieuw" hidden>
+    <div class="wrap midden">
+      <h2 id="nieuw-titel">Nieuw in deze versie</h2>
+      <div class="kaarten" id="nieuw-kaarten"></div>
+      <p class="klein"><a id="nieuw-link" href="https://github.com/NLSection/FBS-App-Client/releases/latest">Alle wijzigingen lezen</a></p>
     </div>
   </section>
 
@@ -275,6 +325,22 @@
     </div>
   </section>
 
+  <section id="vragen">
+    <div class="wrap">
+      <h2 class="midden-kop">Veelgestelde vragen</h2>
+      <div class="vragen">
+        <details><summary>Is FBS echt gratis?</summary><p>Ja. Geen abonnement, geen advertenties en geen betaalde versie met meer mogelijkheden. Wil je de ontwikkeling steunen, dan kan dat met een <a href="#steunen">vrijwillige bijdrage</a>.</p></details>
+        <details><summary>Werkt FBS op mijn telefoon of tablet?</summary><p>Nee. FBS is een programma voor de computer, voor Windows en macOS. Een versie voor telefoon of tablet is er niet.</p></details>
+        <details><summary>Waar staan mijn gegevens?</summary><p>In een map op je eigen computer. FBS stuurt je financiële gegevens nergens heen: niet naar ons, niet naar een cloud en niet naar je bank.</p></details>
+        <details><summary>Hoe zit het met back-ups?</summary><p>FBS maakt zelf back-ups op je computer. Een tweede kopie kan naar een map die jij kiest, bijvoorbeeld een USB-stick of een map van je eigen cloudopslag, desgewenst versleuteld met een wachtwoord. Terugzetten doe je vanuit de app.</p></details>
+        <details><summary>Ik stap over op een nieuwe computer. Hoe neem ik alles mee?</summary><p>Installeer FBS op de nieuwe computer en zet daar je back-up terug. Heb je de back-up versleuteld, houd dan het wachtwoord bij de hand.</p></details>
+        <details><summary>Moet ik zelf nieuwe versies downloaden?</summary><p>Nee. FBS meldt zelf wanneer er een nieuwe versie is en werkt zichzelf bij.</p></details>
+        <details><summary>Werkt FBS met mijn bank?</summary><p>FBS leest de bestanden van de Rabobank en ABN AMRO. Bij andere banken kan het werken als ze CAMT.053 aanbieden, maar dat is nog niet nagekeken. Zie <a href="#banken">Welke banken werken met FBS?</a></p></details>
+        <details><summary>Ik heb een vraag, een idee of vond een fout.</summary><p>Gebruik <strong>Feedback geven</strong>, onderin de zijbalk van FBS. Kies of het om een probleem, een idee of een vraag gaat en beschrijf het in je eigen woorden. Je kunt er meteen een screenshot of een korte opname van je scherm bij maken, of een bestand toevoegen. Persoonlijke gegevens worden daarin standaard afgeschermd, en jij bepaalt wat zichtbaar blijft. De versie van FBS, je systeem en de pagina waar je was stuurt FBS zelf mee. Wil je een antwoord, vul dan je e-mailadres in.</p></details>
+      </div>
+    </div>
+  </section>
+
   <section id="steunen">
     <div class="wrap midden">
       <h2>De ontwikkeling van FBS steunen</h2>
@@ -286,6 +352,23 @@
     </div>
   </section>
 </main>
+
+<!-- Vergrote opname: klik op een opname opent de scherpe, grote versie. -->
+<dialog class="vergroot" id="vergroot" aria-label="Vergrote opname"><img alt=""></dialog>
+
+<dialog class="uitleg" id="privacy">
+  <div class="venster-kop"><span><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Privacy van deze website</span><button type="button" class="venster-sluit" aria-label="Sluiten">✕</button></div>
+  <div class="venster-inhoud privacy-tekst">
+    <p><strong>Geen cookies.</strong> Deze website plaatst geen cookies en volgt je niet over andere websites.</p>
+    <p><strong>Bezoekersaantallen.</strong> We tellen hoe vaak pagina's bekeken worden met Cloudflare Web Analytics. Dat werkt zonder cookies en zonder je te herkennen bij een volgend bezoek.</p>
+    <p><strong>Waar de site vandaan komt.</strong> De pagina wordt geleverd via Cloudflare en GitHub. Zoals bij elke website zien zij daarbij je internetadres, anders kan de pagina je niet bereiken.</p>
+    <p><strong>Downloaden.</strong> Om de nieuwste versie te tonen, vraagt je browser die bij GitHub op, en de installatiebestanden komen ook van GitHub. De knop voor een bijdrage brengt je naar bunq.me; wat je daar invult valt onder bunq.</p>
+    <p><strong>De app zelf.</strong> FBS stuurt je financiële gegevens nergens heen. Het vraagt alleen op of er een nieuwe versie is, en verstuurt feedback alleen als jij daar zelf op klikt.</p>
+    <p><strong>Vragen?</strong> Mail naar <a href="mailto:feedback@section-labs.nl">feedback@section-labs.nl</a>.</p>
+  </div>
+  <form method="dialog" class="venster-voet"><button class="knop knop-hoofd">Sluiten</button></form>
+</dialog>
+
 
 <!-- De inhoud van deze vensters wordt bij het laden overgenomen uit het kader
      #waarschuwing (stappen per systeem plus de uitleg), zodat die tekst maar op
@@ -308,6 +391,7 @@
     <img src="assets/section-labs.png" alt="Logo van Section Labs">
     <strong>SECTION LABS</strong>
     FBS wordt gemaakt door Section Labs.
+    <div class="voet-links"><button type="button" id="open-privacy">Privacy</button> · <a href="mailto:feedback@section-labs.nl">feedback@section-labs.nl</a></div>
   </div>
 </footer>
 
@@ -329,6 +413,55 @@
   // De bestandsnamen dragen het versienummer, dus de knoppen worden bij het laden
   // naar de bestanden van de nieuwste uitgave gezet. Lukt dat niet, dan blijven ze
   // naar de pagina van de nieuwste uitgave wijzen, waar je zelf het bestand kiest.
+  // Opnamen: de pagina laadt de lichte versie, een klik toont de scherpe grote.
+  const vergroot = document.getElementById('vergroot');
+  document.querySelectorAll('img.opname').forEach(img => img.addEventListener('click', () => {
+    vergroot.querySelector('img').src = img.dataset.groot || img.src;
+    vergroot.querySelector('img').alt = img.alt;
+    vergroot.showModal();
+  }));
+  vergroot.addEventListener('click', () => vergroot.close());
+
+  // Privacy-venster uit de voettekst, met dezelfde sluitmogelijkheden als de andere vensters.
+  const privacy = document.getElementById('privacy');
+  document.getElementById('open-privacy').addEventListener('click', () => privacy.showModal());
+  privacy.querySelector('.venster-sluit').addEventListener('click', () => privacy.close());
+  privacy.addEventListener('click', e => { if (e.target === privacy) privacy.close(); });
+
+  // Nieuw in deze versie: per onderwerp uit de uitgavenotities de eerste vetgedrukte
+  // regel. Onderwerpen die geen nieuws voor een bezoeker zijn slaan we over.
+  function toonNieuws(rel) {
+    const overslaan = /^(in cijfers|opgelost|vormgeving|betrouwbaarheid|uit de testrondes|nieuw in \d)/i;
+    const tekst = s => s.replace(/\*\*/g, '').replace(/\*/g, '').replace(/`/g, '').trim();
+    const kaarten = [];
+    // Heeft de uitgave een eigen blok "Hoogtepunten", dan komen de kaarten daaruit:
+    // de vetgedrukte opening als kop, de rest van de regel als tekst.
+    const hoogte = (rel.body || '').split(/\n## /).find(d => /^hoogtepunten/i.test(d));
+    if (hoogte) for (const m of hoogte.matchAll(/^\* \*\*(.+?)\*\*\s*(.*)$/gm)) {
+      kaarten.push([tekst(m[1]).replace(/[.:]$/, ''), tekst(m[2])]);
+      if (kaarten.length === 3) break;
+    }
+    if (!kaarten.length) for (const deel of (rel.body || '').split(/\n## /).slice(1)) {
+      const kop = deel.split('\n')[0].trim();
+      if (overslaan.test(kop)) continue;
+      const regel = deel.match(/^\* \*\*(.+?)\*\*/m);
+      if (!regel) continue;
+      kaarten.push([tekst(kop), tekst(regel[1])]);
+      if (kaarten.length === 3) break;
+    }
+    if (!kaarten.length) return;
+    const bak = document.getElementById('nieuw-kaarten');
+    for (const [kop, zin] of kaarten) {
+      const k = document.createElement('div'); k.className = 'kaart';
+      const h = document.createElement('h3'); h.textContent = kop;
+      const p = document.createElement('p'); p.textContent = zin;
+      k.append(h, p); bak.append(k);
+    }
+    document.getElementById('nieuw-titel').textContent = 'Nieuw in versie ' + rel.tag_name.replace(/^v/, '');
+    document.getElementById('nieuw-link').href = rel.html_url;
+    document.getElementById('nieuw').hidden = false;
+  }
+
   fetch('https://api.github.com/repos/NLSection/FBS-App-Client/releases/latest')
     .then(r => r.ok ? r.json() : Promise.reject(r.status))
     .then(rel => {
@@ -338,6 +471,7 @@
       if (mac) knop.macos.href = mac.browser_download_url;
       if (ander) document.getElementById('dl-ander').href = knop[ander].href;
       document.querySelectorAll('.knop-versie').forEach(el => el.textContent = 'Versie ' + rel.tag_name.replace(/^v/, ''));
+      toonNieuws(rel);
     })
     .catch(() => {});
 
