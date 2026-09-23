@@ -137,8 +137,8 @@ FBS draait standaard helemaal op de computer waar je hem installeert. Je
 gegevens staan in één bestand op die machine, en verder nergens.
 
 Wil je vanaf meerdere apparaten met dezelfde gegevens werken, bijvoorbeeld een
-laptop erbij, dan kun je FBS-Server draaien op je eigen NAS of server. De app
-verbindt daar dan mee en iedereen ziet hetzelfde. Zie
+laptop erbij, dan kun je FBS-Server draaien op je eigen NAS of server. Die is
+nog in bèta. De app verbindt daar dan mee en iedereen ziet hetzelfde. Zie
 [FBS-App-Server](../../../FBS-App-Server).
 
 ---
