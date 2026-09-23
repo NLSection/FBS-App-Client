@@ -1,6 +1,6 @@
 # FBS
 
-**Grip op je geld, zonder spreadsheet-goeroe te worden.**
+**Grip op je geld, zonder spreadsheet-goeroe te zijn.**
 
 FBS is een Nederlandstalig programma voor je eigen financiën. Je leest de
 bestanden in die je bij je bank downloadt, en FBS maakt daar een overzicht van:
