@@ -75,6 +75,10 @@
   .knop-bij:hover { background: var(--surface); }
   .klein { font-size: 14px; color: var(--text-dim); margin-top: 14px; }
   .klein + .klein { margin-top: 4px; }
+  /* .held .teller: anders wint ".held p" (19 px, eigen marge) en wordt de badge te groot. */
+  .held .teller { display: inline-flex; align-items: center; gap: 4px; margin: 10px auto 0; padding: 0 7px; border: 1px solid var(--border); border-radius: 999px; font-size: 11px; font-weight: 600; line-height: 1.25; color: var(--text-h); }
+  .held .teller[hidden] { display: none; }
+  .held .teller svg { width: 10px; height: 10px; color: var(--accent); }
   .klein a { color: inherit; text-decoration: underline dotted; text-underline-offset: 3px; }
   .klein a:hover { color: var(--text-h); }
   [hidden] { display: none !important; }
@@ -311,8 +315,10 @@
       <a class="knop knop-hoofd" id="dl-macos" href="https://github.com/NLSection/FBS-App-Client/releases/latest"><span class="knop-regel"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>Download voor macOS</span><span class="knop-versie"></span></a>
       <a class="knop knop-bij" href="#wat">Wat kan FBS?</a>
     </div>
+    <!-- Aantal downloads als eigen label onder de knoppen (12-10-2026); verschijnt zodra de telling binnen is. -->
+    <p class="teller" id="teller" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg><span id="downloads"></span></p>
     <p class="klein" id="ander-systeem" hidden>Ook beschikbaar voor <a id="dl-ander" href="https://github.com/NLSection/FBS-App-Client/releases/latest"></a></p>
-    <p class="klein">Gratis. Geen account nodig. Voor <a href="#banken">de meeste Nederlandse banken</a>.<span id="downloads"></span></p>
+    <p class="klein">Gratis. Geen account nodig. Voor <a href="#banken">de meeste Nederlandse banken</a>.</p>
     <!-- Waaier van drie uitsneden in plaats van één volle opname (07-10-2026). -->
     <div class="waaier">
       <img class="opname w1" src="assets/waaier-overzicht.jpg" data-groot="assets/overzicht-categorie.png" alt="Het overzicht per categorie op het Dashboard" width="960" height="390">
@@ -726,22 +732,26 @@
 
   // Teller van downloads (22-09-2026). Telt bewust ook de updates mee (keuze van de
   // maker): de Windows-installer, het schijfbestand en het updatebestand voor de Mac.
-  // Pas zichtbaar vanaf DREMPEL, en afgerond naar beneden, zodat het getal niet bij
+  // Altijd zichtbaar (12-10-2026, gebruiker; eerst pas vanaf 500). Onder de 1000 het
+  // precieze aantal, daarboven afgerond naar beneden met een plus, zodat het getal niet bij
   // elk bezoek verspringt. Lukt het ophalen niet, dan staat er gewoon niets.
-  const DREMPEL = 500;
+  // Downloads van bestanden die inmiddels van GitHub zijn verwijderd: een verwijderd bestand
+  // neemt zijn telling mee. Stand 08-10-2026 20:09, vlak voor het opruimen. Zelfde getal als
+  // EERDER in scripts/downloads.js; bij elk volgend opruimen beide ophogen.
+  const EERDER_GETELD = 103;
   fetch('https://api.github.com/repos/NLSection/FBS-App-Client/releases?per_page=100')
     .then(r => r.ok ? r.json() : Promise.reject(r.status))
     .then(uitgaven => {
-      let n = 0;
+      let n = EERDER_GETELD;
       for (const u of uitgaven) {
         for (const a of u.assets) {
           if (/(x64-setup\.exe|\.dmg|\.app\.tar\.gz)$/.test(a.name)) n += a.download_count;
         }
       }
-      if (n < DREMPEL) return;
-      const stap = n >= 10000 ? 1000 : 100;
+      const stap = n >= 10000 ? 1000 : n >= 1000 ? 100 : 1;
       const afgerond = Math.floor(n / stap) * stap;
-      document.getElementById('downloads').textContent = ' ' + afgerond.toLocaleString('nl-NL') + '+ keer gedownload.';
+      document.getElementById('downloads').textContent = 'Al ' + afgerond.toLocaleString('nl-NL') + (stap > 1 ? '+' : '') + ' keer gedownload';
+      document.getElementById('teller').hidden = false;
     })
     .catch(() => {});
 
