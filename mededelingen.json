@@ -1,13 +1,3 @@
 {
-  "mededelingen": [
-    {
-      "id": "m-1791793920128",
-      "tekst": "Er zit een fout in het inlezen van bestanden van ING: boekingen van dezelfde dag kunnen in de verkeerde volgorde komen te staan, waardoor op Transacties onterecht de rode regel “Hier ontbreken boekingen” verschijnt.\n\nJe gegevens zijn veilig en er gaat niets verloren. Importeer tot de oplossing er is liever even geen nieuwe bestanden van ING; bestanden van andere banken kun je gewoon inlezen.\n\nWe werken aan een oplossing en laten het hier weten zodra er een nieuwe versie klaarstaat. Vragen? Gebruik Feedback geven in de zijbalk.",
-      "soort": "storing",
-      "systemen": [],
-      "gewijzigd": "2026-10-12T08:33:24.392Z",
-      "actief": false,
-      "offlineSinds": "2026-10-12T08:51:02.306Z"
-    }
-  ]
+  "mededelingen": []
 }
