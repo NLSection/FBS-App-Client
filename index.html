@@ -741,8 +741,9 @@
   // elk bezoek verspringt. Lukt het ophalen niet, dan staat er gewoon niets.
   // Downloads van bestanden die inmiddels van GitHub zijn verwijderd: een verwijderd bestand
   // neemt zijn telling mee. Stand 08-10-2026 20:09, vlak voor het opruimen. Zelfde getal als
-  // EERDER in scripts/downloads.js; bij elk volgend opruimen beide ophogen.
-  const EERDER_GETELD = 103;
+  // EERDER in scripts/downloads.js; bij elk volgend opruimen beide ophogen. Plus 2 voor de
+  // bestanden van 0.11.5 die op 13-10-2026 door een herbouw zijn vervangen.
+  const EERDER_GETELD = 105;
   fetch('https://api.github.com/repos/NLSection/FBS-App-Client/releases?per_page=100')
     .then(r => r.ok ? r.json() : Promise.reject(r.status))
     .then(uitgaven => {
