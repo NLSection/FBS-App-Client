@@ -1,17 +1,4 @@
 {
-  "mededelingen": [
-    {
-      "id": "m-1792839791139",
-      "tekst": "Vanaf 1 december zet ING een extra kolom in het CSV-bestand. FBS kan dat bestand dan mogelijk niet meer lezen.\nWat je nu kunt doen:\n• Importeer je ING-bestanden vóór 1 december.\n• Werk FBS bij zodra er een nieuwe versie is.\nJe gegevens blijven gewoon staan.\nZo test je meteen de vetgedrukte tekst en een lijstje. Begin een regel met “- “, dan wordt het vanzelf een lijstje. Het is een proeftekst; hij gaat alleen naar het testkanaal.",
-      "soort": "waarschuwing",
-      "systemen": [],
-      "gewijzigd": "2026-10-24T11:13:49.990Z",
-      "titel": "Testmededeling",
-      "html": "<p>Vanaf 1 december zet ING een extra kolom in het CSV-bestand. FBS kan dat bestand dan <strong>mogelijk niet meer lezen</strong>.</p><p>Wat je nu kunt doen:</p><ul><li>Importeer je ING-bestanden vóór 1 december.</li><li>Werk FBS bij zodra er een nieuwe versie is.</li></ul><p>Je gegevens blijven gewoon staan.</p><p>Zo test je meteen de vetgedrukte tekst en een lijstje. Begin een regel met “- “, dan wordt het vanzelf een lijstje. Het is een proeftekst; hij gaat alleen naar het testkanaal.</p>\n\n",
-      "kanaal": "test",
-      "zichtbaarVanaf": "2026-10-25",
-      "onlineSinds": "2026-10-24T11:04:25.242Z"
-    }
-  ],
+  "mededelingen": [],
   "bijwerkenVerplicht": []
 }
