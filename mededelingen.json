@@ -1,13 +1,4 @@
 {
   "mededelingen": [],
-  "bijwerkenVerplicht": [
-    {
-      "id": "b-1792851296306",
-      "opgelostIn": "0.12.6",
-      "systemen": [],
-      "dichtVanaf": "2026-10-24",
-      "gewijzigd": "2026-10-24T14:15:08.690Z",
-      "kanaal": "test"
-    }
-  ]
+  "bijwerkenVerplicht": []
 }
