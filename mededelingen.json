@@ -13,5 +13,15 @@
       "onlineSinds": "2026-10-24T11:04:25.242Z"
     }
   ],
-  "bijwerkenVerplicht": []
+  "bijwerkenVerplicht": [
+    {
+      "id": "b-1792840439815",
+      "opgelostIn": "0.12.5",
+      "systemen": [],
+      "dichtVanaf": "2026-10-24",
+      "gewijzigd": "2026-10-24T11:14:44.130Z",
+      "kanaal": "test",
+      "uitleg": "korte uitleg"
+    }
+  ]
 }
