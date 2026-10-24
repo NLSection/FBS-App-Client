@@ -1,12 +1,3 @@
 {
-  "mededelingen": [
-    {
-      "id": "m-1792831589925",
-      "tekst": "Dit is een test-mededeling",
-      "soort": "storing",
-      "systemen": [],
-      "gewijzigd": "2026-10-24T08:47:15.402Z",
-      "onlineSinds": "2026-10-24T08:47:15.402Z"
-    }
-  ]
+  "mededelingen": []
 }
