@@ -90,8 +90,8 @@
   .waaier .opname { position: absolute; width: 36%; box-shadow: 0 20px 50px rgba(0,0,0,0.45); transition: transform .25s ease; --r: 0deg; transform: rotate(var(--r)); }
   .waaier .opname:hover { transform: rotate(var(--r)) translateY(-8px); z-index: 5; }
   .waaier .w1 { left: 0; top: 22%; --r: -8deg; }
-  .waaier .w2 { left: 15%; top: 6%; width: 38%; --r: -3deg; z-index: 3; }
-  .waaier .w3 { left: 45%; top: 3%; width: 40%; --r: 3deg; z-index: 2; }
+  .waaier .w2 { left: 15%; top: 6%; width: 38%; --r: -3deg; z-index: 2; }
+  .waaier .w3 { left: 45%; top: 3%; width: 40%; --r: 3deg; z-index: 3; }
   .waaier .w4 { right: 0; top: 24%; --r: 8deg; }
 
   section { padding: 56px 0; }
@@ -251,6 +251,17 @@
   .rl-paneel .opname { margin-top: 20px; }
   .kaarten-links .kaart { text-align: left; }
 
+  /* Notities (24-10-2026): de nieuwe pagina, met de nadruk op blaadjes en banners op de andere pagina's. */
+  .nt-kop { margin-bottom: 48px; }
+  .nt-kop .blok-label { justify-content: center; }
+  .nt-blok h3 { font-size: 22px; margin-bottom: 12px; }
+  .nt-breed { grid-template-columns: 1fr; gap: 20px; }
+  .nt-breed .tekst { max-width: 760px; }
+  .nt-venster { max-width: 380px; justify-self: center; }
+  #notities .kaarten { margin-top: 64px; }
+  #notities .nt-verder { text-align: center; font-size: 22px; margin: 64px 0 0; }
+  #notities .nt-verder + .kaarten { margin-top: 24px; }
+
   /* Nieuw in deze versie */
   #nieuw .kaart { text-align: left; }
   #nieuw .kaart h3 { font-size: 17px; }
@@ -315,10 +326,10 @@
     <p class="klein">Gratis. Geen account nodig. Voor <a href="#banken">de meeste Nederlandse banken</a>.</p>
     <!-- Waaier van drie uitsneden in plaats van één volle opname (07-10-2026). -->
     <div class="waaier">
-      <img class="opname w1" src="assets/waaier-overzicht.jpg" data-groot="assets/overzicht-categorie.png" alt="Het overzicht per categorie op het Dashboard" width="960" height="348">
+      <img class="opname w1" src="assets/waaier-overzicht.jpg" data-groot="assets/overzicht-categorie.png" alt="Het overzicht per categorie op het Dashboard" width="960" height="390">
       <img class="opname w4" src="assets/waaier-trends.jpg" data-groot="assets/trends-spaarrekening.png" alt="De grafiek Spaargeld uit Trends" width="960" height="608">
-      <img class="opname w2" src="assets/waaier-balans.jpg" data-groot="assets/balans-potjes.png" alt="De tabel Balans Potjes op het Dashboard" width="960" height="439">
-      <img class="opname w3" src="assets/waaier-transacties.jpg" data-groot="assets/transacties.png" alt="De pagina Transacties" width="960" height="478">
+      <img class="opname w2" src="assets/waaier-balans.jpg" data-groot="assets/balans-potjes.png" alt="De tabel Balans Potjes op het Dashboard" width="960" height="450">
+      <img class="opname w3" src="assets/waaier-transacties.jpg" data-groot="assets/transacties.png" alt="De pagina Transacties" width="960" height="450">
     </div>
   </div>
 
@@ -349,7 +360,7 @@
         <div class="profiel">
           <div class="profiel-beeld vervaag"><img src="assets/profiel-uitgavenbeheer.jpg" alt="" width="600" height="600" loading="lazy"></div>
           <h3>Uitgavenbeheer <span class="badge">Ons advies om mee te beginnen</span></h3>
-          <p>Je begint met het inlezen van je bankafschriften en het indelen van je boekingen. De eerste keer is dat het meeste werk. Daarna wordt het elke maand vanzelf minder, want wat je één keer indeelt, herkent FBS de volgende keer zelf. Die keuzes bewaart FBS als categorisatieregels, die je altijd nog kunt bijstellen.</p>
+          <p>Je begint met het inlezen van je bankafschriften en het indelen van je boekingen. De eerste keer is dat het meeste werk. Daarna wordt het elke maand vanzelf minder, want wat je één keer indeelt, herkent FBS de volgende keer zelf. Die keuzes bewaart FBS als indeelregels, die je altijd nog kunt bijstellen.</p>
           <p>Zodra je al je boekingen hebt ingedeeld, zie je op het Dashboard per categorie waar je geld heen ging, en bij Vaste Posten welke vaste lasten er nog komen. Bij Trends zie je hoe je uitgaven zich over de maanden ontwikkelen. Wil je later vooruit plannen, dan heb je zo meteen de bedragen om mee te beginnen.</p>
         </div>
         <div class="profiel">
@@ -373,8 +384,9 @@
           <button type="button" role="tab" aria-selected="false" aria-controls="rl-vaste-posten"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>Vaste Posten</button>
           <button type="button" role="tab" aria-selected="false" aria-controls="rl-potjes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 17h3v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-3a3.16 3.16 0 0 0 2-2h1a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-1a5 5 0 0 0-2-4V3a4 4 0 0 0-3.2 1.6l-.3.4H11a6 6 0 0 0-6 6v1a5 5 0 0 0 2 4v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1z"/><path d="M16 10h.01"/><path d="M2 8v1a2 2 0 0 0 2 2h1"/></svg>Potjes &amp; Budgetten<span class="rl-badge">Budgetbeheer</span></button>
           <button type="button" role="tab" aria-selected="false" aria-controls="rl-transacties"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h.01"/><path d="M3 12h.01"/><path d="M3 19h.01"/><path d="M8 5h13"/><path d="M8 12h13"/><path d="M8 19h13"/></svg>Transacties</button>
-          <button type="button" role="tab" aria-selected="false" aria-controls="rl-regels"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg>Categorisatieregels</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="rl-regels"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg>Indeelregels</button>
           <button type="button" role="tab" aria-selected="false" aria-controls="rl-trends"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"/></svg>Trends</button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="rl-notities"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 9a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 15 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2z"/><path d="M15 3v5a1 1 0 0 0 1 1h5"/></svg>Notities</button>
           <button type="button" role="tab" aria-selected="false" aria-controls="rl-importeren"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>Importeren</button>
         </div>
         <div class="rl-paneel" id="rl-dashboard" role="tabpanel">
@@ -386,11 +398,11 @@
           </div>
           <div class="rl-dia">
             <p>De tabel Overzicht per Categorie laat zien wat er deze maand per categorie uitging. Klap een regel open en je ziet de boekingen eronder. In Budgetbeheer heet hij Overzicht per Potje of Categorie en staan je budgetten ernaast, met wat er nog te besteden is.</p>
-            <img class="opname" src="assets/overzicht-categorie.png" data-groot="assets/overzicht-categorie.png" alt="De tabel Overzicht per Categorie op het Dashboard" width="1521" height="552" loading="lazy">
+            <img class="opname" src="assets/overzicht-categorie.png" data-groot="assets/overzicht-categorie.png" alt="De tabel Overzicht per Categorie op het Dashboard" width="1497" height="608" loading="lazy">
           </div>
           <div class="rl-dia" hidden>
             <p>De tabel Balans Potjes laat zien hoeveel je van een potje naar je betaalrekening moet overboeken als je een uitgave die bij dat potje hoort met je betaalrekening hebt betaald. Is de maand helemaal ingedeeld, dan sluit je hem af.</p>
-            <img class="opname" src="assets/balans-potjes.png" data-groot="assets/balans-potjes.png" alt="De tabel Balans Potjes op het Dashboard" width="1514" height="693" loading="lazy">
+            <img class="opname" src="assets/balans-potjes.png" data-groot="assets/balans-potjes.png" alt="De tabel Balans Potjes op het Dashboard" width="1497" height="701" loading="lazy">
           </div>
         </div>
         <div class="rl-paneel" id="rl-vaste-posten" role="tabpanel" hidden>
@@ -403,25 +415,31 @@
           <h3>Potjes die kloppen met de werkelijkheid</h3>
           <p>Zet geld opzij voor de auto, de boodschappen of een uitje, op een spaarrekening of alleen op papier. FBS houdt bij wat er werkelijk in zit en waar het begin deze maand stond.</p>
           <p>Heb je de potjes ook bij je bank aangemaakt, dan koppelt FBS ze vanzelf aan die rekening.</p>
-          <img class="opname" src="assets/potjes-budgetten-klein.jpg" data-groot="assets/potjes-budgetten.png" alt="Potjes &amp; Budgetten" width="1440" height="739" loading="lazy">
+          <img class="opname" src="assets/potjes-budgetten-klein.jpg" data-groot="assets/potjes-budgetten.png" alt="Potjes &amp; Budgetten" width="1440" height="900" loading="lazy">
         </div>
         <div class="rl-paneel" id="rl-transacties" role="tabpanel" hidden>
           <h3>Al je boekingen, ingedeeld</h3>
           <p>Alle boekingen per maand, te doorzoeken op naam, omschrijving, IBAN of bedrag. Klik een boeking aan om hem in te delen.</p>
           <p>Zitten er in één afschrijving verschillende soorten uitgaven, zoals bij een creditcard, dan splits je hem over meer categorieën.</p>
-          <img class="opname" src="assets/transacties-klein.jpg" data-groot="assets/transacties.png" alt="Transacties" width="1440" height="900" loading="lazy">
+          <img class="opname" src="assets/transacties-klein.jpg" data-groot="assets/transacties.png" alt="Transacties" width="1440" height="810" loading="lazy">
         </div>
         <div class="rl-paneel" id="rl-regels" role="tabpanel" hidden>
           <h3>FBS leert mee</h3>
           <p>Elke keer dat je een boeking indeelt, onthoudt FBS dat als regel. Hier staan al die regels bij elkaar: op de naam van de tegenpartij, op een rekeningnummer of op woorden in de omschrijving.</p>
           <p>Je ziet ook wanneer een regel voor het laatst iets heeft ingedeeld, zodat je oude regels makkelijk opruimt.</p>
-          <img class="opname" src="assets/categorisatieregels-klein.jpg" data-groot="assets/categorisatieregels.png" alt="Categorisatieregels" width="1440" height="675" loading="lazy">
+          <img class="opname" src="assets/categorisatieregels-klein.jpg" data-groot="assets/categorisatieregels.png" alt="Indeelregels" width="1440" height="675" loading="lazy">
         </div>
         <div class="rl-paneel" id="rl-trends" role="tabpanel" hidden>
           <h3>Hoe het zich ontwikkelt</h3>
           <p>Saldo, uitgaven en inkomsten door de tijd heen, per maand of per jaar.</p>
           <p>Met <em>Grafieken indelen</em> stel je zelf samen welke grafieken je ziet en welke potjes, categorieën of rekeningen erin staan.</p>
           <img class="opname" src="assets/trends-klein.jpg" data-groot="assets/trends.png" alt="Trends" width="1440" height="636" loading="lazy">
+        </div>
+        <div class="rl-paneel" id="rl-notities" role="tabpanel" hidden>
+          <h3>Wat je niet wilt vergeten</h3>
+          <p>Memoblaadjes op een prikbord: een notitie, een afvinklijstje, geld dat je voor iemand voorschiet of een lening die je afbetaalt. Bij een voorschot zie je wie al heeft terugbetaald en hoeveel er nog openstaat.</p>
+          <p>Hoort een blaadje bij een bepaalde pagina, dan hang je het daar op. Het staat dan naast de titel, zoals het lijstje <em>Deze maand regelen</em> op Transacties.</p>
+          <img class="opname" src="assets/notities-klein.jpg" data-groot="assets/notities.png" alt="Notities" width="1440" height="789" loading="lazy">
         </div>
         <div class="rl-paneel" id="rl-importeren" role="tabpanel" hidden>
           <h3>Je bankafschriften inlezen</h3>
@@ -438,7 +456,7 @@
       <h2>Hulp onderweg</h2>
       <div class="kaarten kaarten-links">
         <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"/><path d="M15 5.764v15"/><path d="M9 3.236v15"/></svg></span><h3>Wegwijs</h3><p>Na het welkomstscherm wijst een balk onderin je scherm stap voor stap de weg: wat je doet, en op welke pagina.</p></div>
-        <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></span><h3>Tips</h3><p>Ruim vijftig korte tips, elk bij de pagina waar ze over gaan. Hoe vaak je er een ziet, stel je zelf in.</p></div>
+        <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></span><h3>Tips</h3><p>Ruim zestig korte tips, elk bij de pagina waar ze over gaan. Hoe vaak je er een ziet, stel je zelf in.</p></div>
         <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><h3>Uitleg bij elk onderdeel</h3><p>Achter het informatieteken bij tabellen, kaarten en instellingen staat wat een onderdeel doet.</p></div>
         <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><path d="M16 9a5 5 0 0 1 0 6"/><path d="M19.364 18.364a9 9 0 0 0 0-12.728"/></svg></span><h3>Verteller</h3><p>Liever luisteren? De verteller leest het welkomstscherm, de wegwijs-hulp en de tips voor, met een stem van je eigen computer. Er gaat geen tekst naar buiten.</p></div>
         <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg></span><h3>Meldingen</h3><p>Herinneringen die je zelf zet, seintjes bij het importeren, en een waarschuwing als er boekingen ontbreken tussen twee imports.</p></div>
@@ -468,14 +486,86 @@
     </div>
   </section>
 
-  <section id="gegevens">
+  <!-- Notities (24-10-2026, gebruiker): de pagina zelf, en vooral de notities op de andere pagina's. Opnamen met de
+       voorbeeldnotities van scripts/demo-notities.js; de uitsneden komen uit scripts/verklein-opnamen.ps1. -->
+  <section id="notities">
+    <div class="wrap">
+      <div class="midden nt-kop">
+        <span class="blok-label"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 9a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 15 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2z"/><path d="M15 3v5a1 1 0 0 0 1 1h5"/></svg>Nieuw in 0.12.9</span>
+        <h2>Notities: wat je niet wilt vergeten</h2>
+        <p class="sub-midden">Memoblaadjes op een prikbord, en op de plek waar je ze nodig hebt: naast de titel van de pagina waar ze over gaan.</p>
+      </div>
+      <div class="blok nt-blok">
+        <div class="tekst">
+          <h3>Een prikbord vol memoblaadjes</h3>
+          <p>Op de pagina Notities hangen je blaadjes op een prikbord. Sleep ze naar een andere plek, plak ze aan elkaar, zet ze vast of rond ze af. Met een eigen prikbord houd je bijvoorbeeld een verbouwing apart.</p>
+          <div class="stappen-rij">
+            <div><span class="bank-icoon klein-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 9a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 15 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2z"/><path d="M15 3v5a1 1 0 0 0 1 1h5"/></svg></span><p><strong>Notitie.</strong> Wat je niet wilt vergeten, met opmaak als je wilt: vet, lijstjes of een kleur.</p></div>
+            <div><span class="bank-icoon klein-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 5h8"/><path d="M13 12h8"/><path d="M13 19h8"/><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/></svg></span><p><strong>Afvinklijstje.</strong> Wat je nog moet regelen. Wat klaar is, vink je af.</p></div>
+            <div><span class="bank-icoon klein-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3 4 7l4 4"/><path d="M4 7h16"/><path d="m16 21 4-4-4-4"/><path d="M20 17H4"/></svg></span><p><strong>Voorschot.</strong> Geld dat je voor iemand voorschiet of dat iemand voor jou voorschoot, ook voor meer mensen tegelijk. Je ziet wie al heeft terugbetaald en hoeveel er nog openstaat.</p></div>
+            <div><span class="bank-icoon klein-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"/><path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><path d="m2 16 6 6"/><circle cx="16" cy="9" r="2.9"/><circle cx="6" cy="5" r="3"/></svg></span><p><strong>Lening.</strong> Met rente, looptijd en aflosvorm. FBS rekent het maandbedrag uit en laat zien wanneer de lening is afbetaald.</p></div>
+          </div>
+        </div>
+        <img class="opname" src="assets/notities-klein.jpg" data-groot="assets/notities.png" alt="Het prikbord op de pagina Notities" width="1440" height="789" loading="lazy">
+      </div>
+      <div class="blok nt-blok nt-breed">
+        <div class="tekst">
+          <h3>Een blaadje naast de titel</h3>
+          <p>Een notitie hoeft niet op het prikbord te blijven. Hang hem naast de titel van de pagina waar hij bij hoort, precies zoals hij op het prikbord hangt: het vakantiegeld en het voorschot van een weekendje weg bij Potjes &amp; Budgetten, het lijstje voor deze maand bij Transacties. Zo zie je hem op het moment dat je eraan werkt.</p>
+          <p>Er passen vier blaadjes naast de titel, en de volgorde sleep je op de pagina zelf. Een klik op een blaadje opent de notitie.</p>
+        </div>
+        <img class="opname" src="assets/notitie-blaadjes.jpg" data-groot="assets/potjes-budgetten.png" alt="Twee blaadjes naast de titel van Potjes &amp; Budgetten" width="1200" height="534" loading="lazy">
+      </div>
+      <div class="blok nt-blok nt-breed">
+        <div class="tekst">
+          <h3>Of als banner bovenaan</h3>
+          <p>Liever een balk over de hele breedte? Zet de notitie dan als banner bovenaan de pagina, met <em>Openen</em> erbij. Staan er meer banners op een pagina, dan wisselen ze elke acht seconden vanzelf, en blader je zelf met de pijltjes.</p>
+        </div>
+        <img class="opname" src="assets/notitie-banner.jpg" data-groot="assets/dashboard.png" alt="Een notitie als banner bovenaan het Dashboard" width="1200" height="203" loading="lazy">
+      </div>
+      <div class="blok om nt-blok">
+        <div class="tekst">
+          <h3>Jij kiest waar hij hangt</h3>
+          <p>In het venster van een notitie kies je op het tabblad <em>Weergave</em> bij <em>Tonen op pagina's</em> de pagina's waar hij moet staan, of <em>Alle pagina's</em>. Per pagina zet je <em>Als banner</em> of <em>Als blaadje</em> aan, of allebei.</p>
+          <p>Je ziet meteen hoeveel plek er op een pagina nog vrij is, en welke notities daar al hangen.</p>
+        </div>
+        <img class="opname nt-venster" src="assets/notitie-weergave.jpg" data-groot="assets/notitie-weergave.png" alt="Het tabblad Weergave in het venster van een notitie" width="576" height="900" loading="lazy">
+      </div>
+      <div class="kaarten kaarten-links">
+        <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.268 21a2 2 0 0 0 3.464 0"/><path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"/></svg></span><h3>Herinneringen</h3><p>Op een dag die je kiest, eenmalig of steeds weer, een melding die het blaadje opent.</p></div>
+        <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg></span><h3>Terugbetalingen koppelen</h3><p>Koppel een boeking op Transacties aan een voorschot of lening. Hang je er een indeelregel aan, dan tellen volgende terugbetalingen vanzelf mee.</p></div>
+        <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 4v16"/><path d="M17 4v16"/><path d="M19 4H9.5a4.5 4.5 0 0 0 0 9H13"/></svg></span><h3>Schrijven in een groot venster</h3><p>Het venster toont de blaadjes zoals ze op het prikbord hangen. Geef je tekst vet, lijstjes, een kleur of markering; een lange tekst loopt door op een volgend blaadje.</p></div>
+      </div>
+      <h3 class="nt-verder">Verder nieuw in 0.12.9</h3>
+      <div class="kaarten kaarten-links">
+        <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg></span><h3>Overal indelen</h3><p>Eén woord voor één handeling: je deelt je boekingen in, en wat FBS daarvan onthoudt staat op de pagina Indeelregels. Boekingen die nog geen plek hebben heten Niet ingedeeld.</p></div>
+        <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"/><path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/><path d="m2 16 6 6"/><circle cx="16" cy="9" r="2.9"/><circle cx="6" cy="5" r="3"/></svg></span><h3>Voorschotten per potje</h3><p>Bij een voorschot met een persoon kies je <em>Voorgeschoten voor</em> of <em>Voorgeschoten door</em>. Je ziet per potje (in Uitgavenbeheer per categorie) wat er is voorgeschoten, terugbetaald en nog open is, en bij een bedrag dat je zelf invult kies je het potje. Op het blaadje staat bij de naam voor of door wie het is, met daaronder wat er nog open is.</p></div>
+        <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4"/><path d="M3 10h18"/><path d="M8 2v4"/><path d="M17 14h-6"/><path d="M13 18H7"/><path d="M7 14h.01"/><path d="M17 18h.01"/></svg></span><h3>Hoeveel per maand naar een potje</h3><p>Kies op het Dashboard bij de maanden <em>Alle</em>: de kolom Gemiddeld per maand laat zien wat je gemiddeld uitgeeft, en rekent alleen met de maanden die voorbij zijn. Nieuwe tips leggen uit hoe je dat bedrag als vaste overboeking klaarzet.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gegevens" class="vlak">
     <div class="wrap midden">
       <h2>Je gegevens blijven bij jou</h2>
       <div class="kaarten">
-        <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.94 5.274A7 7 0 0 1 15.71 10h1.79a4.5 4.5 0 0 1 4.222 6.057"/><path d="M18.796 18.81A4.5 4.5 0 0 1 17.5 19H9A7 7 0 0 1 5.79 5.78"/><path d="m2 2 20 20"/></svg></span><h3>Geen cloud</h3><p>Er gaat niets naar een dienst van iemand anders. Je gegevens staan op je eigen computer. Alleen als jij ervoor kiest, gaat er iets naar buiten: een back-up naar je eigen cloudmap, of feedback die je zelf verstuurt.</p></div>
+        <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.94 5.274A7 7 0 0 1 15.71 10h1.79a4.5 4.5 0 0 1 4.222 6.057"/><path d="M18.796 18.81A4.5 4.5 0 0 1 17.5 19H9A7 7 0 0 1 5.79 5.78"/><path d="m2 2 20 20"/></svg></span><h3>Geen cloud</h3><p>Er gaat niets naar een dienst van iemand anders. Je gegevens staan op je eigen computer. Alleen als jij ervoor kiest, gaat er iets naar buiten: een back-up naar je eigen cloudmap, je eigen FBS-Server als je op meer computers werkt, of feedback die je zelf verstuurt.</p></div>
         <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18.84 12.25 1.72-1.71h-.02a5.004 5.004 0 0 0-.12-7.07 5.006 5.006 0 0 0-6.95 0l-1.72 1.71"/><path d="m5.17 11.75-1.71 1.71a5.004 5.004 0 0 0 .12 7.07 5.006 5.006 0 0 0 6.95 0l1.71-1.71"/><line x1="8" x2="8" y1="2" y2="5"/><line x1="2" x2="5" y1="8" y2="8"/><line x1="16" x2="16" y1="19" y2="22"/><line x1="19" x2="22" y1="16" y2="16"/></svg></span><h3>Geen koppeling met je bank</h3><p>FBS leest alleen de bankafschriften die je zelf bij je bank downloadt. Het logt nergens voor je in.</p></div>
         <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg class="" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 16h.01"/><path d="M2.212 11.577a2 2 0 0 0-.212.896V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5.527a2 2 0 0 0-.212-.896L18.55 5.11A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/><path d="M21.946 12.013H2.054"/><path d="M6 16h.01"/></svg></span><h3>Zelf back-ups</h3><p>FBS maakt bij het starten en afsluiten zelf een back-up. Een tweede kopie kan naar een map die jij kiest, zoals een USB-stick, je NAS of je eigen cloudmap, desgewenst versleuteld met een wachtwoord.</p></div>
       </div>
+    </div>
+  </section>
+
+  <section id="fbs-server">
+    <div class="wrap midden">
+      <h2>FBS op meer dan één computer</h2>
+      <p class="sub-midden">Met FBS-Server deel je een administratie tussen je computers, bijvoorbeeld met een laptop erbij. Wat je op de ene computer verandert, staat ook op de andere.</p>
+      <div class="kaarten kaarten-links">
+        <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg></span><h3>Op je eigen NAS</h3><p>FBS-Server zet je op je eigen NAS of thuisserver, met Docker of als pakket voor Synology. Gratis, net als FBS.</p></div>
+        <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"/><path d="M20.054 15.987H3.946"/></svg></span><h3>Elke computer een eigen kopie</h3><p>Je deelt een administratie vanuit FBS en koppelt je andere computer met een koppelcode. Elke computer werkt op zijn eigen kopie, ook als FBS-Server even niet bereikbaar is.</p></div>
+        <div class="kaart"><span class="bank-icoon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span><h3>In je eigen netwerk</h3><p>Je gegevens gaan niet naar ons en niet naar een cloud. Een nieuwe versie van FBS-Server zet je erop vanuit FBS zelf.</p></div>
+      </div>
+      <p class="klein"><a href="https://github.com/NLSection/FBS-App-Server/releases">FBS-Server downloaden en installeren</a></p>
     </div>
   </section>
 
@@ -529,14 +619,15 @@
       <div class="vragen">
         <details><summary>Is FBS echt gratis?</summary><p>Ja. Geen abonnement, geen advertenties en geen betaalde versie met meer mogelijkheden. Wil je de ontwikkeling steunen, dan kan dat met een <a href="#steunen">vrijwillige bijdrage</a>.</p></details>
         <details><summary>Werkt FBS op mijn telefoon of tablet?</summary><p>Nee. FBS is een programma voor de computer, voor Windows en macOS. Een versie voor telefoon of tablet is er niet.</p></details>
-        <details><summary>Waar staan mijn gegevens?</summary><p>In een map op je eigen computer, samen met de interne back-ups. Op Windows is dat <em>%LOCALAPPDATA%\FBS\gegevens</em>, op de Mac <em>Library/Application Support/nl.sectionlabs.fbs/gegevens</em> in je thuismap. Library heet in een Nederlandse Finder <em>Bibliotheek</em> en is standaard verborgen; je komt er het snelst via <em>Ga naar map</em> (Shift-Command-G). FBS stuurt je financiële gegevens nergens heen: niet naar ons, niet naar een cloud en niet naar je bank.</p></details>
-        <details><summary>Hoe zit het met back-ups?</summary><p><strong>Automatisch:</strong> FBS maakt bij het starten en afsluiten zelf een interne back-up op je computer. Daarnaast kan het een externe back-up wegschrijven naar een map die jij kiest, bijvoorbeeld een USB-stick, je NAS of een map van je eigen cloudopslag, desgewenst versleuteld met een wachtwoord. Die externe back-up houdt zichzelf bij: was de map even niet bereikbaar, dan kopieert FBS de volgende keer wat er nog ontbreekt. De interne back-up staat op dezelfde computer als je gegevens: gaat die computer stuk, dan ben je hem ook kwijt. Zet daarom ook een externe back-up aan.</p><p><strong>Zelf, op elk moment:</strong> bij <em>Instellingen</em>, tabblad <em>Systeem</em>, onder <em>Back-up &amp; herstel</em>, maakt de knop <em>Download backup</em> direct een volledige back-up die je opslaat waar je wilt. Handig vlak voordat je iets groots verandert.</p><p>Terugzetten doe je op dezelfde plek in de app.</p></details>
-        <details><summary>Ik stap over op een nieuwe computer. Hoe neem ik alles mee?</summary><p>Installeer FBS op de nieuwe computer. Gebruikte je een externe back-up, kies dan bij <em>Instellingen</em>, tabblad <em>Systeem</em>, onder <em>Back-up &amp; herstel</em> dezelfde map als <em>Locatie</em>. Zolang de nieuwe administratie nog leeg is, meldt FBS binnen een paar minuten <em>Back-up van een ander apparaat gevonden</em>, met de naam van je oude computer. Klik op <em>Terugzetten</em> en je gaat verder waar je was.</p><p>Geen externe back-up? Maak dan op de oude computer een back-up met <em>Download backup</em> en zet die op dezelfde plek op de nieuwe computer terug. Was de back-up versleuteld, houd dan het wachtwoord of de herstelsleutel van de oude computer bij de hand.</p></details>
+        <details><summary>Waar staan mijn gegevens?</summary><p>In een map op je eigen computer, samen met de interne back-ups. Op Windows is dat <em>%LOCALAPPDATA%\FBS\gegevens</em>, op de Mac <em>Library/Application Support/nl.sectionlabs.fbs/gegevens</em> in je thuismap. Library heet in een Nederlandse Finder <em>Bibliotheek</em> en is standaard verborgen; je komt er het snelst via <em>Ga naar map</em> (Shift-Command-G). FBS stuurt je financiële gegevens niet naar ons, niet naar een cloud en niet naar je bank. Werk je op meer computers, dan staat er ook een kopie op je eigen FBS-Server.</p></details>
+        <details><summary>Hoe zit het met back-ups?</summary><p><strong>Automatisch:</strong> FBS maakt bij het starten en afsluiten zelf een interne back-up op je computer. Daarnaast kan het een externe back-up wegschrijven naar een map die jij kiest, bijvoorbeeld een USB-stick, je NAS of een map van je eigen cloudopslag, desgewenst versleuteld met een wachtwoord. Die externe back-up houdt zichzelf bij: was de map even niet bereikbaar, dan kopieert FBS de volgende keer wat er nog ontbreekt. De interne back-up staat op dezelfde computer als je gegevens: gaat die computer stuk, dan ben je hem ook kwijt. Zet daarom ook een externe back-up aan.</p><p><strong>Zelf, op elk moment:</strong> bij <em>Instellingen</em>, tabblad <em>Systeem</em>, onder <em>Back-up &amp; herstel</em>, maakt de knop <em>Download back-up</em> direct een volledige back-up die je opslaat waar je wilt. Handig vlak voordat je iets groots verandert.</p><p>Terugzetten doe je op dezelfde plek in de app.</p></details>
+        <details><summary>Ik stap over op een nieuwe computer. Hoe neem ik alles mee?</summary><p>Installeer FBS op de nieuwe computer. Gebruikte je een externe back-up, kies dan bij <em>Instellingen</em>, tabblad <em>Systeem</em>, onder <em>Back-up &amp; herstel</em> dezelfde map als <em>Locatie</em>. Zolang de nieuwe administratie nog leeg is, meldt FBS binnen een paar minuten <em>Back-up van een ander apparaat gevonden</em>, met de naam van je oude computer. Klik op <em>Terugzetten</em> en je gaat verder waar je was.</p><p>Geen externe back-up? Maak dan op de oude computer een back-up met <em>Download back-up</em> en zet die op dezelfde plek op de nieuwe computer terug. Was de back-up versleuteld, houd dan het wachtwoord of de herstelsleutel van de oude computer bij de hand.</p></details>
         <details><summary>Kan ik meer dan één administratie bijhouden?</summary><p>Ja, bijvoorbeeld je eigen geld en dat van een ouder die je helpt. Elke administratie heeft eigen gegevens en eigen back-ups. Je wisselt ertussen bovenin de zijbalk; een nieuwe maak je bij <em>Instellingen</em>, tabblad <em>Database</em>, met <em>+ Administratie toevoegen</em>.</p></details>
+        <details><summary>Kan ik FBS op meer dan één computer gebruiken?</summary><p>Ja, met FBS-Server: een gratis programma dat je op je eigen NAS of thuisserver zet, met Docker of als pakket voor Synology. Je deelt een administratie vanuit FBS, bij <em>Instellingen</em>, tabblad <em>Database</em>, en koppelt je andere computer met een koppelcode. Elke computer werkt op zijn eigen kopie; wat je verandert, gaat via de server naar de andere computers. FBS-Server en de uitleg om hem te installeren vind je op <a href="https://github.com/NLSection/FBS-App-Server/releases">GitHub</a>.</p></details>
         <details><summary>Moet ik zelf nieuwe versies downloaden?</summary><p>Nee. FBS meldt zelf wanneer er een nieuwe versie is en werkt zichzelf bij.</p></details>
         <details><summary>Hoe verwijder ik FBS?</summary><p><strong>Windows:</strong> verwijder FBS zoals elk ander programma, via de lijst met geïnstalleerde apps in de instellingen van Windows. Je gegevens blijven daarbij standaard staan, zodat een nieuwe installatie ze terugvindt. Wil je alles wissen, vink dan tijdens het verwijderen <em>App-gegevens verwijderen</em> aan; FBS vraagt daarna nog één keer of je het zeker weet.</p><p><strong>macOS:</strong> sleep FBS uit Programma's naar de prullenmand. Je gegevens blijven staan in de map <em>Library/Application Support/nl.sectionlabs.fbs</em> in je thuismap (in Finder heet Library <em>Bibliotheek</em>); gooi die ook weg als je alles wilt wissen.</p><p>Back-ups die je zelf naar een andere map hebt laten schrijven, blijven in beide gevallen staan.</p></details>
         <details><summary>Werkt FBS met mijn bank?</summary><p>FBS leest de bankafschriften van Rabobank, ABN AMRO, ING, ASN Bank, SNS, RegioBank, Knab en bunq. Met echte bestanden getest zijn Rabobank en ABN AMRO; de andere zijn ingesteld volgens de openbare beschrijving van hun bestand, maar nog niet getest met een echt bestand. Staat je bank er niet bij maar biedt hij <em>CAMT.053</em> aan, dan kun je het proberen. Zie <a href="#banken">Welke banken werken met FBS?</a></p></details>
-        <details><summary>Ik heb een vraag, een idee of vond een fout.</summary><p>Gebruik <strong>Feedback geven</strong>, onderin de zijbalk van FBS. Kies of het om een probleem, een idee of een vraag gaat en beschrijf het in je eigen woorden. Je kunt er meteen een screenshot of een korte opname van je scherm bij maken, of een bestand toevoegen. Persoonlijke gegevens worden daarin standaard afgeschermd, en jij bepaalt wat zichtbaar blijft. De versie van FBS, je systeem en de pagina waar je was stuurt FBS zelf mee. Wil je een antwoord, vul dan je e-mailadres in.</p></details>
+        <details><summary>Ik heb een vraag, een idee of vond een fout.</summary><p>Gebruik <strong>Feedback geven</strong>, onderin de zijbalk van FBS. Kies of het om een probleem, een idee of een vraag gaat en beschrijf het in je eigen woorden. Je kunt er meteen een screenshot of een korte opname van je scherm bij maken, of een bestand toevoegen. Persoonlijke gegevens worden daarin standaard afgeschermd, en jij bepaalt wat zichtbaar blijft. De versie van FBS, je systeem en de pagina waar je was stuurt FBS zelf mee. Bij een probleem gaat standaard ook het logboek van FBS mee, zonder je gebruikersnaam, de naam van je computer, rekeningnummers en e-mailadressen; met <em>Bekijk wat er meegaat</em> zie je eerst wat erin staat. Wil je een antwoord, vul dan je e-mailadres in.</p></details>
       </div>
     </div>
   </section>
