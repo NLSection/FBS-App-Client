@@ -21,7 +21,7 @@ je gegevens blijven staan.
 Je begint met het inlezen van je bankafschriften en het indelen van je
 boekingen. De eerste keer is dat het meeste werk. Daarna wordt het elke maand
 vanzelf minder, want wat je één keer indeelt, herkent FBS de volgende keer zelf.
-Die keuzes bewaart FBS als categorisatieregels, die je altijd nog kunt
+Die keuzes bewaart FBS als indeelregels, die je altijd nog kunt
 bijstellen.
 
 Zodra je al je boekingen hebt ingedeeld, zie je op het Dashboard per categorie
@@ -116,7 +116,7 @@ Alles wat je ooit hebt ingedeeld staat bij elkaar in één overzicht. Je kunt er
 altijd iets in bijstellen, en die wijziging werkt door naar de boekingen die er
 al bij hoorden.
 
-![Categorisatieregels](assets/categorisatieregels.png)
+![Indeelregels](assets/categorisatieregels.png)
 
 ### Terugkijken over langere tijd
 
@@ -124,6 +124,65 @@ Zet maanden en jaren naast elkaar en zie hoe je uitgaven zich ontwikkelen, per
 categorie of over je spaargeld.
 
 ![Trends](assets/trends.png)
+
+### Notities: wat je niet wilt vergeten
+
+Memoblaadjes op een prikbord, en op de plek waar je ze nodig hebt. Er zijn vier
+soorten blaadjes:
+
+- **Notitie:** wat je niet wilt vergeten, met opmaak als je wilt: vet, lijstjes
+  of een kleur.
+- **Afvinklijstje:** wat je nog moet regelen. Wat klaar is, vink je af.
+- **Voorschot:** geld dat je voor iemand voorschiet of dat iemand voor jou
+  voorschoot, ook voor meer mensen tegelijk. Je ziet wie al heeft terugbetaald en
+  hoeveel er nog openstaat.
+- **Lening:** met rente, looptijd en aflosvorm. FBS rekent het maandbedrag uit en
+  laat zien wanneer de lening is afbetaald.
+
+Sleep blaadjes naar een andere plek, plak ze aan elkaar, zet ze vast of rond ze
+af. Met een eigen prikbord houd je bijvoorbeeld een verbouwing apart.
+
+![Het prikbord op de pagina Notities](assets/notities.png)
+
+**Een blaadje naast de titel.** Een notitie hoeft niet op het prikbord te
+blijven. Hang hem naast de titel van de pagina waar hij bij hoort, precies zoals
+hij op het prikbord hangt: het vakantiegeld en het voorschot van een weekendje
+weg bij Potjes & Budgetten, het lijstje voor deze maand bij Transacties. Zo zie je
+hem op het moment dat je eraan werkt. Er passen vier blaadjes naast de titel, en
+de volgorde sleep je op de pagina zelf.
+
+![Twee blaadjes naast de titel van Potjes & Budgetten](assets/notitie-blaadjes.jpg)
+
+**Of als banner bovenaan.** Liever een balk over de hele breedte? Zet de notitie
+dan als banner bovenaan de pagina. Staan er meer banners op een pagina, dan
+wisselen ze elke acht seconden vanzelf.
+
+![Een notitie als banner bovenaan het Dashboard](assets/notitie-banner.jpg)
+
+**Jij kiest waar hij hangt.** In het venster van een notitie kies je op het
+tabblad *Weergave* bij *Tonen op pagina's* de pagina's waar hij moet staan, of
+*Alle pagina's*, en per pagina *Als banner* of *Als blaadje*, of allebei.
+
+Verder: herinneringen op een dag die je kiest, terugbetalingen die je koppelt aan
+een voorschot of lening (met een indeelregel eraan tellen de volgende
+vanzelf mee), en een groot venster om in te schrijven, met vet, lijstjes,
+letterkleur en markeren.
+
+### Nieuw in 0.12.9
+
+- **Overal indelen.** Eén woord voor één handeling: je deelt je boekingen in, en
+  wat FBS daarvan onthoudt staat op de pagina Indeelregels. Boekingen die nog geen
+  plek hebben heten *Niet ingedeeld*, en bij Instellingen heet het tabblad
+  *Categorieën*.
+- **Voorschotten per potje.** Bij een voorschot met een persoon kies je
+  *Voorgeschoten voor* of *Voorgeschoten door*. Je ziet per potje (in
+  Uitgavenbeheer per categorie) wat er is voorgeschoten, terugbetaald en nog open
+  is, en bij een bedrag dat je zelf invult kies je het potje. Op het blaadje staat
+  bij de naam voor of door wie het is, met daaronder wat er nog open is.
+- **Hoeveel per maand naar een potje.** Kies op het Dashboard bij de maanden
+  *Alle*: de kolom Gemiddeld per maand laat zien wat je gemiddeld uitgeeft, en
+  rekent alleen met de maanden die voorbij zijn. Nieuwe tips leggen uit hoe je dat
+  bedrag als vaste overboeking klaarzet.
 
 ---
 
@@ -159,7 +218,7 @@ je door en legt per scherm uit wat je er doet.
 
 ### Hulp onderweg
 
-- **Tips:** ruim vijftig korte tips, elk bij de pagina waar ze over gaan. Hoe
+- **Tips:** ruim zestig korte tips, elk bij de pagina waar ze over gaan. Hoe
   vaak je er een ziet, stel je zelf in.
 - **Uitleg bij elk onderdeel:** achter het informatieteken bij tabellen, kaarten en
   instellingen staat wat een onderdeel doet.
@@ -201,9 +260,11 @@ stabiele versies wilt of ook de testversies.
 FBS draait standaard helemaal op de computer waar je hem installeert. Je
 gegevens staan in één bestand op die machine, en verder nergens.
 
-Wil je vanaf meerdere apparaten met dezelfde gegevens werken, bijvoorbeeld een
-laptop erbij, dan kun je FBS-Server draaien op je eigen NAS of server. Die is
-nog in bèta. De app verbindt daar dan mee en iedereen ziet hetzelfde. Zie
+Wil je op meer computers met dezelfde gegevens werken, bijvoorbeeld een
+laptop erbij, dan zet je FBS-Server op je eigen NAS of thuisserver, met Docker
+of als pakket voor Synology. Je deelt een administratie vanuit FBS en koppelt je
+andere computer met een koppelcode. Elke computer werkt op zijn eigen kopie; wat
+je verandert, gaat via de server naar de andere computers. Zie
 [FBS-App-Server](../../../FBS-App-Server).
 
 ---
@@ -214,7 +275,8 @@ Er gaat niets naar een dienst van iemand anders. Geen account, geen koppeling
 met je bank, geen gegevens in een cloud. FBS leest de bankafschriften die jij zelf
 bij je bank downloadt, en bewaart het resultaat op je eigen apparaat. Alleen als
 jij ervoor kiest, gaat er iets naar buiten: een back-up naar je eigen cloudmap,
-of feedback die je zelf verstuurt.
+je eigen FBS-Server als je op meer computers werkt, of feedback die je zelf
+verstuurt.
 
 Back-ups maakt FBS zelf, bij het starten en afsluiten. Je kunt er een tweede
 kopie van laten wegschrijven naar een map die je zelf kiest, zoals een USB-stick,
