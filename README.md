@@ -67,7 +67,9 @@ gaat.
 Een potje is geld dat je apart zet voor iets: de auto, boodschappen, uitjes. Dat
 kan een echte spaarrekening zijn, of alleen een bedrag dat je op papier opzij
 zet. FBS houdt bij wat er werkelijk in zit en wat je er deze maand nog van over
-hebt.
+hebt. Hoeveel je per maand naar een potje overmaakt, zie je op het Dashboard:
+kies bij de maanden *Alle*, dan laat de kolom Gemiddeld per maand zien wat je
+gemiddeld uitgeeft.
 
 ![Potjes en budgetten](assets/potjes-budgetten.png)
 
@@ -114,7 +116,7 @@ en uitgaat.
 
 Alles wat je ooit hebt ingedeeld staat bij elkaar in één overzicht. Je kunt er
 altijd iets in bijstellen, en die wijziging werkt door naar de boekingen die er
-al bij hoorden.
+al bij hoorden. Verwijder je een regel, dan deelt FBS zijn boekingen opnieuw in.
 
 ![Indeelregels](assets/categorisatieregels.png)
 
@@ -135,7 +137,7 @@ soorten blaadjes:
 - **Afvinklijstje:** wat je nog moet regelen. Wat klaar is, vink je af.
 - **Voorschot:** geld dat je voor iemand voorschiet of dat iemand voor jou
   voorschoot, ook voor meer mensen tegelijk. Je ziet wie al heeft terugbetaald en
-  hoeveel er nog openstaat.
+  hoeveel er nog openstaat, ook per potje.
 - **Lening:** met rente, looptijd en aflosvorm. FBS rekent het maandbedrag uit en
   laat zien wanneer de lening is afbetaald.
 
@@ -168,21 +170,18 @@ een voorschot of lening (met een indeelregel eraan tellen de volgende
 vanzelf mee), en een groot venster om in te schrijven, met vet, lijstjes,
 letterkleur en markeren.
 
-### Nieuw in 0.12.9
+### Nieuw in 0.13.6
 
-- **Overal indelen.** Eén woord voor één handeling: je deelt je boekingen in, en
-  wat FBS daarvan onthoudt staat op de pagina Indeelregels. Boekingen die nog geen
-  plek hebben heten *Niet ingedeeld*, en bij Instellingen heet het tabblad
-  *Categorieën*.
-- **Voorschotten per potje.** Bij een voorschot met een persoon kies je
-  *Voorgeschoten voor* of *Voorgeschoten door*. Je ziet per potje (in
-  Uitgavenbeheer per categorie) wat er is voorgeschoten, terugbetaald en nog open
-  is, en bij een bedrag dat je zelf invult kies je het potje. Op het blaadje staat
-  bij de naam voor of door wie het is, met daaronder wat er nog open is.
-- **Hoeveel per maand naar een potje.** Kies op het Dashboard bij de maanden
-  *Alle*: de kolom Gemiddeld per maand laat zien wat je gemiddeld uitgeeft, en
-  rekent alleen met de maanden die voorbij zijn. Nieuwe tips leggen uit hoe je dat
-  bedrag als vaste overboeking klaarzet.
+- **Veilig van binnen.** FBS praat alleen nog met zichzelf: verzoeken van andere
+  websites worden geweigerd, een vreemd script kan je gegevens nergens heen
+  sturen, en wijzigingen van een ander apparaat worden nagekeken voordat ze worden
+  uitgevoerd.
+- **Snel, ook met veel boekingen.** Transacties, indelen, importeren, het belletje
+  en Vaste Posten zijn een stuk sneller, ook bij een administratie met
+  tienduizenden boekingen.
+- **Opruimen zonder zorgen.** Een indeelregel verwijderen deelt zijn boekingen
+  opnieuw in, en Alles wissen zet FBS terug zoals na een nieuwe installatie, met
+  Alles terugzetten als je je bedenkt.
 
 ---
 
