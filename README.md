@@ -170,18 +170,17 @@ een voorschot of lening (met een indeelregel eraan tellen de volgende
 vanzelf mee), en een groot venster om in te schrijven, met vet, lijstjes,
 letterkleur en markeren.
 
-### Nieuw in 0.13.6
+### Nieuw in 0.14.7
 
-- **Veilig van binnen.** FBS praat alleen nog met zichzelf: verzoeken van andere
-  websites worden geweigerd, een vreemd script kan je gegevens nergens heen
-  sturen, en wijzigingen van een ander apparaat worden nagekeken voordat ze worden
-  uitgevoerd.
-- **Snel, ook met veel boekingen.** Transacties, indelen, importeren, het belletje
-  en Vaste Posten zijn een stuk sneller, ook bij een administratie met
-  tienduizenden boekingen.
-- **Opruimen zonder zorgen.** Een indeelregel verwijderen deelt zijn boekingen
-  opnieuw in, en Alles wissen zet FBS terug zoals na een nieuwe installatie, met
-  Alles terugzetten als je je bedenkt.
+- **Overal hetzelfde bedrag.** Het Dashboard, Vaste Posten, Potjes & Budgetten,
+  de totalenblokken en de meldingen rekenen met dezelfde maand en dezelfde
+  regels, en zeggen het als een bedrag niet uit te rekenen was.
+- **Snel aan de slag.** Na het aanzetten van de computer staat FBS in een paar
+  seconden klaar, en pagina's zijn na een wijziging tot drie keer zo snel
+  bijgewerkt.
+- **Niets raakt kwijt.** Back-ups worden gecontroleerd voordat ze iets
+  vervangen, je zet back-ups van gewiste administraties terug, en een notitie
+  vraagt eerst voordat je wijzigingen weggooit.
 
 ---
 
