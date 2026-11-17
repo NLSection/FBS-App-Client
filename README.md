@@ -170,7 +170,7 @@ een voorschot of lening (met een indeelregel eraan tellen de volgende
 vanzelf mee), en een groot venster om in te schrijven, met vet, lijstjes,
 letterkleur en markeren.
 
-### Nieuw in 0.14.7
+### Nieuw in 0.14.8
 
 - **Overal hetzelfde bedrag.** Het Dashboard, Vaste Posten, Potjes & Budgetten,
   de totalenblokken en de meldingen rekenen met dezelfde maand en dezelfde
